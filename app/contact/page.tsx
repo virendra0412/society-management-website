@@ -7,13 +7,30 @@ import Footer from "@/components/Footer";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", society: "", units: "", message: "", type: "demo" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+      setSubmitted(true);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to send. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -128,8 +145,13 @@ export default function ContactPage() {
                     <label className="block text-sm font-semibold text-navy mb-1.5">Message *</label>
                     <textarea name="message" required value={form.message} onChange={handle} rows={4} placeholder="Tell us about your society and what you're looking for..." className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal transition-colors resize-none" />
                   </div>
-                  <button type="submit" className="w-full py-3.5 rounded-xl bg-teal text-white font-bold text-sm hover:bg-teal/90 transition-colors shadow-lg shadow-teal/20">
-                    Send Message →
+                  {error && (
+                    <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
+                  )}
+                  <button type="submit" disabled={loading} className="w-full py-3.5 rounded-xl bg-teal text-white font-bold text-sm hover:bg-teal/90 transition-colors shadow-lg shadow-teal/20 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                    {loading ? (
+                      <><span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> Sending…</>
+                    ) : "Send Message →"}
                   </button>
                   <p className="text-gray-400 text-xs text-center">We respond within 4 hours on weekdays. Your data is never shared.</p>
                 </form>
