@@ -1,0 +1,100 @@
+import Link from "next/link";
+import { Check } from "lucide-react";
+
+const plans = [
+  {
+    name: "Free",
+    price: "₹0",
+    unit: "forever",
+    desc: "For societies up to 50 units",
+    color: "border-green",
+    badge: "bg-green/10 text-green",
+    features: ["Visitor Management", "Notice Board", "Community Help", "Basic Maintenance", "1 Admin"],
+  },
+  {
+    name: "Standard",
+    price: "₹2,999",
+    unit: "/ month",
+    desc: "For societies up to 200 units",
+    color: "border-teal",
+    badge: "bg-teal/10 text-teal",
+    features: ["Everything in Free", "Issues & Complaints", "Events & Polls", "3 Committee Roles", "Email Notifications"],
+    highlight: true,
+  },
+  {
+    name: "Pro",
+    price: "₹5,999",
+    unit: "/ month",
+    desc: "For societies up to 500 units",
+    color: "border-navy",
+    badge: "bg-navy/10 text-navy",
+    features: ["Everything in Standard", "Amenity Booking", "Advanced Analytics", "Custom Branding", "API Access"],
+  },
+];
+
+export default function PricingTeaser() {
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-5">
+        <p className="text-teal text-xs font-bold uppercase tracking-widest text-center mb-3">Pricing</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-navy text-center mb-4">
+          Start free. Scale when ready.
+        </h2>
+        <p className="text-gray-500 text-center max-w-lg mx-auto mb-14 leading-relaxed">
+          No per-unit charges below 200 units. No credit card to start.
+          Upgrade only when your society grows.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {plans.map((p, i) => (
+            <div
+              key={i}
+              className={`rounded-2xl border-2 p-6 ${p.color} ${p.highlight ? "shadow-xl relative" : ""}`}
+            >
+              {p.highlight && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                  <span className="bg-teal text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              <div className={`text-[11px] font-bold px-2.5 py-1 rounded-full inline-block mb-4 ${p.badge}`}>
+                {p.name}
+              </div>
+              <div className="mb-1">
+                <span className="font-display text-3xl font-bold text-navy">{p.price}</span>
+                <span className="text-gray-400 text-sm ml-1">{p.unit}</span>
+              </div>
+              <p className="text-gray-400 text-xs mb-5">{p.desc}</p>
+              <ul className="space-y-2 mb-6">
+                {p.features.map((f, j) => (
+                  <li key={j} className="flex items-center gap-2 text-sm text-gray-600">
+                    <Check size={14} className="text-teal flex-shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/register"
+                className={`block text-center py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+                  p.highlight
+                    ? "bg-teal text-white hover:bg-teal/90"
+                    : "border border-gray-200 text-navy hover:border-teal hover:text-teal"
+                }`}
+              >
+                Get started →
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center mt-8 text-sm text-gray-400">
+          Need 500+ units?{" "}
+          <Link href="/contact" className="text-teal font-medium hover:underline">
+            Contact us for Enterprise pricing
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+}
