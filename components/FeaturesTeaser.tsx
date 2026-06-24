@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { StaggerGroup, StaggerItem } from "./ScrollReveal";
 
 const modules = [
   { icon: "🚪", title: "Visitor Management", desc: "OTP entry, pre-approved passes, trusted visitor list, full gate log.", tag: "Most loved", tagColor: "bg-green/10 text-green" },
@@ -25,22 +27,24 @@ export default function FeaturesTeaser() {
           your RWA actually needs, built into one mobile-first platform.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {modules.map((m, i) => (
-            <div key={i} className="bg-white rounded-2xl p-5 hover:shadow-md transition-shadow border border-gray-100">
-              <div className="flex items-start justify-between mb-3">
-                <span className="text-2xl">{m.icon}</span>
-                {m.tag && (
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${m.tagColor}`}>
-                    {m.tag}
-                  </span>
-                )}
+            <StaggerItem key={i}>
+              <div className="bg-white rounded-2xl p-5 hover:shadow-md transition-shadow border border-gray-100 h-full">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-2xl">{m.icon}</span>
+                  {m.tag && (
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${m.tagColor}`}>
+                      {m.tag}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-display font-bold text-navy text-base mb-1.5">{m.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{m.desc}</p>
               </div>
-              <h3 className="font-display font-bold text-navy text-base mb-1.5">{m.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{m.desc}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
         <div className="text-center mt-10">
           <Link
