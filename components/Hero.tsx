@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { ArrowRight, Play, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedCounter from "./AnimatedCounter";
 
 // Simulated phone screen rows
 const phoneScreenItems = [
@@ -77,7 +79,9 @@ export default function Hero() {
                 ))}
                 <span className="text-white font-semibold text-sm ml-1">4.8</span>
               </div>
-              <p className="text-white/40 text-xs">1,200 societies · 85,000 residents</p>
+              <p className="text-white/40 text-xs">
+                <AnimatedCounter value="1,200" /> societies · <AnimatedCounter value="85,000" /> residents
+              </p>
             </div>
           </div>
         </div>
@@ -134,22 +138,36 @@ export default function Hero() {
             </div>
 
             {/* Floating badge — visitors today */}
-            <div className="absolute -left-10 top-16 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+              className="absolute -left-10 top-16 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
+            >
               <span className="text-xl">🚪</span>
               <div>
-                <p className="text-navy font-bold text-sm leading-none">24</p>
+                <p className="text-navy font-bold text-sm leading-none">
+                  <AnimatedCounter value="24" duration={1.2} />
+                </p>
                 <p className="text-gray-400 text-[10px]">Visitors today</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Floating badge — payment */}
-            <div className="absolute -right-8 bottom-24 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+              className="absolute -right-8 bottom-24 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
+            >
               <span className="text-xl">✅</span>
               <div>
-                <p className="text-green font-bold text-sm leading-none">₹1.2L</p>
+                <p className="text-green font-bold text-sm leading-none">
+                  ₹<AnimatedCounter value="1.2" duration={1.2} />L
+                </p>
                 <p className="text-gray-400 text-[10px]">Collected</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import FilteredModuleGrid from "@/components/FilteredModuleGrid";
 import { ArrowRight } from "lucide-react";
 
 const modules = [
@@ -12,6 +14,7 @@ const modules = [
     tagColor: "bg-green/10 text-green",
     tier: "Free",
     tierColor: "text-green",
+    category: "Security",
     desc: "OTP-based gate entry, pre-approved visitor passes, trusted visitor list for maids and cooks, full chronological gate log with photos.",
     highlights: ["OTP entry flow", "Pre-approved passes", "Trusted visitors (maids, cooks)", "Guard mobile app", "Full gate log"],
   },
@@ -23,6 +26,7 @@ const modules = [
     tagColor: "bg-teal/10 text-teal",
     tier: "Free",
     tierColor: "text-green",
+    category: "Finance",
     desc: "Auto-generate monthly bills, send UPI payment links to residents, track defaulters, and issue digital receipts instantly.",
     highlights: ["Auto bill generation", "UPI payment links", "Defaulter dashboard", "Digital receipts", "Payment reminders"],
   },
@@ -34,6 +38,7 @@ const modules = [
     tagColor: "",
     tier: "Free",
     tierColor: "text-green",
+    category: "Community",
     desc: "Post pinned notices with push notifications, category tags (urgent, water, electricity, event), and read-receipt confirmation.",
     highlights: ["Push notifications", "Category tags", "Pin important notices", "Read receipts", "Scheduled notices"],
   },
@@ -45,6 +50,7 @@ const modules = [
     tagColor: "",
     tier: "Standard",
     tierColor: "text-teal",
+    category: "Admin",
     desc: "Residents raise complaints with photos. Committee assigns to vendors. Everyone tracks status from open to closed with timestamps.",
     highlights: ["Photo attachments", "Vendor assignment", "Status tracking", "Resolution timeline", "Closure photos"],
   },
@@ -56,6 +62,7 @@ const modules = [
     tagColor: "",
     tier: "Standard",
     tierColor: "text-teal",
+    category: "Community",
     desc: "Create society events with RSVP, collect poll votes, share photo galleries after events, and export to calendar.",
     highlights: ["RSVP management", "Community polls", "Photo galleries", "Calendar export", "Attendance tracking"],
   },
@@ -67,6 +74,7 @@ const modules = [
     tagColor: "bg-navy/10 text-navy",
     tier: "Pro",
     tierColor: "text-navy",
+    category: "Facilities",
     desc: "Residents book clubhouse, gym, rooftop, or pool with time slots. Committee approves, collects deposits, manages conflicts.",
     highlights: ["Time slot booking", "Deposit collection", "Committee approval", "Conflict prevention", "Booking history"],
   },
@@ -78,6 +86,7 @@ const modules = [
     tagColor: "",
     tier: "Free",
     tierColor: "text-green",
+    category: "Community",
     desc: "Neighbour-to-neighbour service marketplace. Residents offer and request help — from tutoring to tool lending.",
     highlights: ["Service listings", "Request & offer", "Rating system", "In-app chat", "Category browse"],
   },
@@ -89,6 +98,7 @@ const modules = [
     tagColor: "",
     tier: "Standard",
     tierColor: "text-teal",
+    category: "Facilities",
     desc: "Maintain a slot registry, issue guest parking permits, manage two-wheeler and four-wheeler records per flat.",
     highlights: ["Slot registry", "Guest permits", "Vehicle records", "Permit expiry alerts", "Flat-wise view"],
   },
@@ -100,6 +110,7 @@ const modules = [
     tagColor: "bg-amber/10 text-amber",
     tier: "All plans",
     tierColor: "text-amber",
+    category: "Admin",
     desc: "Full UI in Hindi, Gujarati, Tamil, Marathi, Punjabi, and English — every resident can use the app in their language.",
     highlights: ["6 Indian languages", "Per-user preference", "Auto-detect option", "RTL support planned", "Secretary can set default"],
   },
@@ -111,6 +122,7 @@ const modules = [
     tagColor: "",
     tier: "Pro",
     tierColor: "text-navy",
+    category: "Admin",
     desc: "Society health dashboard — maintenance collection rate, visitor trends, complaint resolution time, amenity utilisation.",
     highlights: ["Collection rate chart", "Defaulter trend", "Complaint heatmap", "Amenity utilisation", "Exportable CSV"],
   },
@@ -122,6 +134,7 @@ const modules = [
     tagColor: "",
     tier: "Free",
     tierColor: "text-green",
+    category: "Community",
     desc: "Verified resident list with flat numbers, family members, vehicle details, and emergency contacts — all in one searchable directory.",
     highlights: ["Flat-wise view", "Family members", "Vehicle details", "Emergency contacts", "Role-based access"],
   },
@@ -133,6 +146,7 @@ const modules = [
     tagColor: "",
     tier: "All plans",
     tierColor: "text-amber",
+    category: "Security",
     desc: "Push, SMS, and WhatsApp notifications for every event — visitor arrival, payment due, notice posted, complaint updated.",
     highlights: ["Push notifications", "SMS fallback", "WhatsApp alerts", "Per-user preferences", "Do not disturb hours"],
   },
@@ -174,7 +188,9 @@ export default function FeaturesPage() {
             <div className="flex justify-center gap-10 flex-wrap mb-10">
               {stats.map((s) => (
                 <div key={s.label} className="text-center">
-                  <div className="font-display text-3xl font-bold text-white">{s.value}</div>
+                  <div className="font-display text-3xl font-bold text-white">
+                    <AnimatedCounter value={s.value} />
+                  </div>
                   <div className="text-white/40 text-xs mt-0.5">{s.label}</div>
                 </div>
               ))}
@@ -209,47 +225,7 @@ export default function FeaturesPage() {
         {/* Modules grid */}
         <section className="py-16 bg-light">
           <div className="max-w-6xl mx-auto px-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {modules.map((m, i) => (
-                <Link
-                  key={i}
-                  href={m.href}
-                  className="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-teal/30 hover:shadow-lg transition-all flex flex-col"
-                >
-                  {/* Header row */}
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl">{m.icon}</span>
-                    <div className="flex items-center gap-2">
-                      {m.tag && (
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${m.tagColor}`}>
-                          {m.tag}
-                        </span>
-                      )}
-                      <span className={`text-[10px] font-semibold ${m.tierColor}`}>{m.tier}</span>
-                    </div>
-                  </div>
-
-                  <h2 className="font-display font-bold text-navy text-lg mb-2 group-hover:text-teal transition-colors">
-                    {m.title}
-                  </h2>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{m.desc}</p>
-
-                  {/* Highlights */}
-                  <ul className="space-y-1 mb-4">
-                    {m.highlights.map((h, j) => (
-                      <li key={j} className="flex items-center gap-2 text-xs text-gray-500">
-                        <span className="w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex items-center gap-1 text-teal text-xs font-semibold group-hover:gap-2 transition-all">
-                    Learn more <ArrowRight size={13} />
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <FilteredModuleGrid modules={modules} />
           </div>
         </section>
 
