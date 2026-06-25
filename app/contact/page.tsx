@@ -190,7 +190,7 @@ export default function ContactPage() {
                 <h3 className="font-display font-bold text-xl mb-2">Prefer WhatsApp?</h3>
                 <p className="text-white/70 text-sm mb-4 leading-relaxed">Message us directly on WhatsApp. Our team responds within 2 hours on weekdays. No bots — real product specialists.</p>
                 <a
-                  href="https://wa.me/919876543210?text=Hi%2C%20I'd%20like%20a%20demo%20of%20SocietyApp"
+                  href="https://wa.me/919537495474?text=Hi%2C%20I'd%20like%20a%20demo%20of%20SocietyApp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-teal font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white/90 transition-colors"
