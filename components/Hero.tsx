@@ -22,7 +22,7 @@ export default function Hero() {
       {/* Teal left accent bar */}
       <div className="absolute left-0 top-0 h-full w-1 bg-teal" />
 
-      <div className="max-w-6xl mx-auto px-5 w-full py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-5 w-full py-10 lg:py-0 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         {/* Left — Copy */}
         <div>
           {/* Badge */}
@@ -86,9 +86,9 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — Phone mockup */}
-        <div className="flex justify-center lg:justify-end">
-          <div className="animate-float relative">
+        {/* Right — Phone mockup: centered on mobile, right-aligned on desktop */}
+        <div className="flex justify-center lg:justify-end items-center">
+          <div className="animate-float relative mt-8 mb-16 lg:my-0">
             {/* Phone shell */}
             <div className="w-64 bg-[#0a1628] rounded-[2.5rem] border border-white/10 shadow-2xl shadow-black/60 overflow-hidden p-1.5">
               {/* Notch */}
@@ -142,7 +142,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-              className="absolute -left-10 top-16 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
+              className="absolute -left-14 top-16 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
             >
               <span className="text-xl">🚪</span>
               <div>
@@ -158,7 +158,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
-              className="absolute -right-8 bottom-24 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
+              className="absolute -right-14 bottom-24 bg-white rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
             >
               <span className="text-xl">✅</span>
               <div>
