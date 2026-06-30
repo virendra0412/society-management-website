@@ -2,6 +2,7 @@
 "use client";
 import { useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
 const testimonials = [
   {
@@ -63,6 +64,7 @@ const testimonials = [
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const { tr } = useTranslation();
 
   const prev = () => setActive((i) => (i === 0 ? testimonials.length - 1 : i - 1));
   const next = () => setActive((i) => (i === testimonials.length - 1 ? 0 : i + 1));
@@ -77,10 +79,10 @@ export default function Testimonials() {
       <div className="max-w-5xl mx-auto px-5">
         {/* Heading */}
         <p className="text-teal text-xs font-bold uppercase tracking-widest text-center mb-3">
-          Real societies. Real results.
+          {tr.home_testimonials_eyebrow}
         </p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-white text-center mb-16">
-          Trusted by secretaries across India.
+          {tr.home_testimonials_heading}
         </h2>
 
         {/* Main testimonial card */}

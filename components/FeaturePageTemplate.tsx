@@ -1,38 +1,17 @@
-// home/claude/societyapp-build/components/FeaturePageTemplate.tsx 
+"use client";
 import Link from "next/link";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
-export interface Flow {
-  icon: string;
-  label: string;
-  detail: string;
-}
-
-export interface FeatureItem {
-  icon: string;
-  title: string;
-  desc: string;
-}
-
-export interface FaqItem {
-  q: string;
-  a: string;
-}
-
-export interface RelatedModule {
-  icon: string;
-  title: string;
-  href: string;
-  desc: string;
-}
+export interface Flow { icon: string; label: string; detail: string; }
+export interface FeatureItem { icon: string; title: string; desc: string; }
+export interface FaqItem { q: string; a: string; }
+export interface RelatedModule { icon: string; title: string; href: string; desc: string; }
 
 export interface FeaturePageProps {
-  badge: string;
-  emoji: string;
-  headline: string;
-  headlineAccent: string;
-  subline: string;
+  badge: string; emoji: string;
+  headline: string; headlineAccent: string; subline: string;
   problems: { icon: string; title: string; desc: string }[];
   flows: Flow[];
   adminView: { title: string; points: string[] };
@@ -40,8 +19,7 @@ export interface FeaturePageProps {
   features: FeatureItem[];
   faqs: FaqItem[];
   related: RelatedModule[];
-  ctaHeadline: string;
-  ctaSub: string;
+  ctaHeadline: string; ctaSub: string;
 }
 
 export default function FeaturePageTemplate({
@@ -49,11 +27,12 @@ export default function FeaturePageTemplate({
   problems, flows, adminView, residentView,
   features, faqs, related, ctaHeadline, ctaSub,
 }: FeaturePageProps) {
+  const { tr } = useTranslation();
+
   return (
     <>
       <Navbar />
       <main className="bg-light min-h-screen pt-16">
-
         {/* Hero */}
         <section className="bg-navy relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-teal/10 blur-[100px] pointer-events-none" />
@@ -67,10 +46,10 @@ export default function FeaturePageTemplate({
             <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">{subline}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/register" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-teal text-white font-semibold text-sm hover:bg-teal/90 transition-colors shadow-lg shadow-teal/25">
-                Register Free — No Credit Card
+                {tr.common_register_free} — {tr.common_no_credit_card}
               </Link>
               <Link href="/pricing" className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl border border-white/20 text-white/80 font-semibold text-sm hover:border-white/40 hover:text-white transition-colors">
-                View Pricing →
+                {tr.common_view_pricing} →
               </Link>
             </div>
           </div>
@@ -119,7 +98,7 @@ export default function FeaturePageTemplate({
           </div>
         </section>
 
-        {/* Admin vs Resident view */}
+        {/* Admin vs Resident */}
         <section className="max-w-6xl mx-auto px-5 py-16">
           <h2 className="font-display text-3xl font-bold text-navy text-center mb-10">Who uses it and how</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,7 +108,7 @@ export default function FeaturePageTemplate({
                 <ul className="space-y-3">
                   {view.points.map((pt, j) => (
                     <li key={j} className={`flex items-start gap-3 text-sm ${i === 0 ? "text-white/70" : "text-gray-600"}`}>
-                      <span className="text-teal font-bold mt-0.5 flex-shrink-0">✓</span> {pt}
+                      <span className="text-teal font-bold mt-0.5 flex-shrink-0">✓</span>{pt}
                     </li>
                   ))}
                 </ul>
@@ -191,15 +170,14 @@ export default function FeaturePageTemplate({
             <p className="text-white/70 mb-8">{ctaSub}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/register" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-teal font-bold text-sm hover:bg-white/90 transition-colors">
-                Register Your Society Free →
+                {tr.common_register_free} →
               </Link>
               <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-white/40 text-white font-semibold text-sm hover:border-white/80 transition-colors">
-                Book a Demo
+                {tr.common_book_demo}
               </Link>
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
     </>

@@ -1,10 +1,9 @@
-//app/pricing/page.tsx
-
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Link from "next/link";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
 const plans = [
   {
@@ -13,18 +12,11 @@ const plans = [
     units: "Up to 50 units",
     badge: null,
     color: "border-gray-200",
-    cta: { label: "Get Started Free", href: "/register", style: "border border-navy text-navy hover:bg-navy hover:text-white" },
+    cta: { label: "get_started", href: "/register", style: "border border-navy text-navy hover:bg-navy hover:text-white" },
     features: [
-      "✅ Visitor Management (all 4 flows)",
-      "✅ Notice Board",
-      "✅ Community Help",
-      "✅ Basic Maintenance billing",
-      "✅ 1 Admin account",
-      "✅ Push notifications",
-      "✅ 6 Indian language UI",
-      "❌ Issues & Complaints",
-      "❌ Events & Polls",
-      "❌ Parking Management",
+      "✅ Visitor Management (all 4 flows)", "✅ Notice Board", "✅ Community Help",
+      "✅ Basic Maintenance billing", "✅ 1 Admin account", "✅ Push notifications",
+      "✅ 6 Indian language UI", "❌ Issues & Complaints", "❌ Events & Polls", "❌ Parking Management",
     ],
   },
   {
@@ -33,18 +25,11 @@ const plans = [
     units: "Up to 200 units",
     badge: "Most Popular",
     color: "border-teal ring-2 ring-teal",
-    cta: { label: "Start Standard Trial", href: "/register?plan=standard", style: "bg-teal text-white hover:bg-teal/90" },
+    cta: { label: "start_trial", href: "/register?plan=standard", style: "bg-teal text-white hover:bg-teal/90" },
     features: [
-      "✅ Everything in Free",
-      "✅ Issues & Complaints",
-      "✅ Events & Polls",
-      "✅ Parking Management",
-      "✅ 3 Committee role accounts",
-      "✅ Email notifications",
-      "✅ Payment defaulter reports",
-      "✅ Priority email support",
-      "❌ Amenity Booking",
-      "❌ Advanced Analytics",
+      "✅ Everything in Free", "✅ Issues & Complaints", "✅ Events & Polls",
+      "✅ Parking Management", "✅ 3 Committee role accounts", "✅ Email notifications",
+      "✅ Payment defaulter reports", "✅ Priority email support", "❌ Amenity Booking", "❌ Advanced Analytics",
     ],
   },
   {
@@ -53,18 +38,11 @@ const plans = [
     units: "Up to 500 units",
     badge: null,
     color: "border-gray-200",
-    cta: { label: "Start Pro Trial", href: "/register?plan=pro", style: "bg-navy text-white hover:bg-navy/90" },
+    cta: { label: "start_trial", href: "/register?plan=pro", style: "bg-navy text-white hover:bg-navy/90" },
     features: [
-      "✅ Everything in Standard",
-      "✅ Amenity Booking",
-      "✅ Advanced Analytics dashboard",
-      "✅ Priority support (phone + email)",
-      "✅ Unlimited Committee members",
-      "✅ Custom branding (logo + colors)",
-      "✅ API Access",
-      "✅ Audit logs",
-      "✅ Custom notification templates",
-      "✅ Multi-society admin",
+      "✅ Everything in Standard", "✅ Amenity Booking", "✅ Advanced Analytics dashboard",
+      "✅ Priority support (phone + email)", "✅ Unlimited Committee members", "✅ Custom branding",
+      "✅ API Access", "✅ Audit logs", "✅ Custom notification templates", "✅ Multi-society admin",
     ],
   },
   {
@@ -73,58 +51,60 @@ const plans = [
     units: "500+ units",
     badge: null,
     color: "border-gray-200",
-    cta: { label: "Contact Sales", href: "/contact", style: "border border-navy text-navy hover:bg-navy hover:text-white" },
+    cta: { label: "contact_sales", href: "/contact", style: "border border-navy text-navy hover:bg-navy hover:text-white" },
     features: [
-      "✅ Everything in Pro",
-      "✅ Dedicated server infrastructure",
-      "✅ White-label app (your branding)",
-      "✅ SLA guarantee (99.9% uptime)",
-      "✅ Onboarding manager",
-      "✅ Custom integrations",
-      "✅ VAPT security audit",
-      "✅ Custom payment gateway",
-      "✅ On-site training sessions",
-      "✅ Quarterly business reviews",
+      "✅ Everything in Pro", "✅ Dedicated server infrastructure", "✅ White-label app",
+      "✅ SLA guarantee (99.9% uptime)", "✅ Onboarding manager", "✅ Custom integrations",
+      "✅ VAPT security audit", "✅ Custom payment gateway", "✅ On-site training", "✅ Quarterly reviews",
     ],
   },
 ];
 
-const faqs = [
+const faqItems = [
   { q: "Is the Free plan really free forever?", a: "Yes. The Free plan has no expiry date and no credit card required. You get Visitor Management, Notice Board, Community Help, and Basic Maintenance for up to 50 units — permanently free." },
   { q: "Can I upgrade or downgrade mid-month?", a: "You can upgrade anytime and your new features are available immediately. Downgrades take effect at the end of your current billing cycle. You'll never lose data when downgrading." },
   { q: "Do you charge per unit / per flat?", a: "No per-unit pricing below 200 units. Standard covers up to 200 units for a flat ₹2,999/month regardless of how many residents you have. Pro covers up to 500 units." },
-  { q: "What payment methods do you accept?", a: "We accept UPI (Google Pay, PhonePe, Paytm), all major credit/debit cards (Visa, Mastercard, RuPay), and NEFT/RTGS for annual plans. Invoice billing available for Enterprise." },
+  { q: "What payment methods do you accept?", a: "We accept UPI (Google Pay, PhonePe, Paytm), all major credit/debit cards, and NEFT/RTGS for annual plans. Invoice billing available for Enterprise." },
   { q: "Is there a contract or lock-in period?", a: "No lock-in on monthly plans. Annual plans offer 2 months free and are billed once per year. You can cancel anytime with a 30-day money-back guarantee on all paid plans." },
-  { q: "What happens if my society grows beyond my plan's unit limit?", a: "You'll get an in-app notification 30 days before hitting the limit. You can upgrade in one tap. Your data and settings are fully preserved during upgrades." },
+  { q: "What happens if my society grows beyond the unit limit?", a: "You'll get an in-app notification 30 days before hitting the limit. You can upgrade in one tap — your data and settings are fully preserved." },
 ];
 
 export default function PricingPage() {
   const [annual, setAnnual] = useState(false);
+  const { tr } = useTranslation();
+
+  const ctaLabel = (key: string) => {
+    if (key === "get_started") return tr.common_get_started;
+    if (key === "contact_sales") return tr.common_contact_sales;
+    return tr.common_get_started;
+  };
 
   return (
     <>
       <Navbar />
       <main className="bg-light min-h-screen pt-16">
 
-        {/* ── Hero ── */}
+        {/* Hero */}
         <section className="bg-navy relative overflow-hidden py-20">
           <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-teal/10 blur-[100px] pointer-events-none" />
           <div className="max-w-4xl mx-auto px-5 text-center">
-            <div className="inline-block bg-teal/20 text-teal text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">Transparent Pricing</div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Simple plans, genuine value</h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">Start free. Upgrade only when your society needs more. No per-unit fees, no hidden costs, no hardware bills.</p>
+            <div className="inline-block bg-teal/20 text-teal text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+              {tr.nav_pricing}
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">{tr.pricing_title}</h1>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">{tr.pricing_sub}</p>
 
-            {/* Toggle */}
+            {/* Monthly / Annual toggle */}
             <div className="inline-flex items-center gap-3 bg-white/10 rounded-full px-4 py-2">
-              <span className={`text-sm font-semibold ${!annual ? "text-white" : "text-white/40"}`}>Monthly</span>
+              <span className={`text-sm font-semibold transition-colors ${!annual ? "text-white" : "text-white/40"}`}>{tr.pricing_monthly}</span>
               <button
                 onClick={() => setAnnual(!annual)}
                 className={`relative w-12 h-6 rounded-full transition-colors ${annual ? "bg-teal" : "bg-white/20"}`}
               >
                 <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${annual ? "translate-x-7" : "translate-x-1"}`} />
               </button>
-              <span className={`text-sm font-semibold ${annual ? "text-white" : "text-white/40"}`}>
-                Annual <span className="text-amber font-bold text-xs">Save 2 months</span>
+              <span className={`text-sm font-semibold transition-colors ${annual ? "text-white" : "text-white/40"}`}>
+                {tr.pricing_annual} <span className="text-amber font-bold text-xs">{tr.pricing_save}</span>
               </span>
             </div>
           </div>
@@ -135,14 +115,11 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ── Plans Grid ── */}
+        {/* Plans grid */}
         <section className="max-w-6xl mx-auto px-5 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
             {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`bg-white rounded-3xl border-2 ${plan.color} p-6 flex flex-col relative shadow-sm`}
-              >
+              <div key={plan.name} className={`bg-white rounded-3xl border-2 ${plan.color} p-6 flex flex-col relative shadow-sm`}>
                 {plan.badge && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-teal text-white text-xs font-bold px-4 py-1.5 rounded-full">
                     {plan.badge}
@@ -156,11 +133,12 @@ export default function PricingPage() {
                       <span className="text-4xl font-display font-bold text-navy">
                         ₹{annual ? plan.price.annual?.toLocaleString("en-IN") : plan.price.monthly?.toLocaleString("en-IN")}
                       </span>
-                      {plan.price.monthly > 0 && <span className="text-gray-400 text-sm mb-1.5">/month</span>}
-                      {plan.price.monthly === 0 && <span className="text-gray-400 text-sm mb-1.5">forever</span>}
+                      {plan.price.monthly === 0
+                        ? <span className="text-gray-400 text-sm mb-1.5">{tr.pricing_forever}</span>
+                        : <span className="text-gray-400 text-sm mb-1.5">{tr.pricing_per_month}</span>}
                     </div>
                   ) : (
-                    <div className="text-3xl font-display font-bold text-navy">Custom</div>
+                    <div className="text-3xl font-display font-bold text-navy">{tr.pricing_custom}</div>
                   )}
                   {annual && plan.price.monthly !== null && plan.price.monthly > 0 && (
                     <p className="text-amber text-xs font-semibold mt-1">
@@ -169,11 +147,9 @@ export default function PricingPage() {
                   )}
                 </div>
 
-                <Link
-                  href={plan.cta.href}
-                  className={`block text-center py-3 rounded-xl font-semibold text-sm transition-colors mb-5 ${plan.cta.style}`}
-                >
-                  {plan.cta.label}
+                <Link href={plan.cta.href}
+                  className={`block text-center py-3 rounded-xl font-semibold text-sm transition-colors mb-5 ${plan.cta.style}`}>
+                  {ctaLabel(plan.cta.label)}
                 </Link>
 
                 <ul className="space-y-2 flex-1">
@@ -189,14 +165,14 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ── Trust strip ── */}
+        {/* Trust strip */}
         <section className="max-w-6xl mx-auto px-5 pb-12">
           <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-center shadow-sm">
             {[
               { icon: "🔒", label: "30-Day Money-Back Guarantee", sub: "On all paid plans, no questions asked." },
               { icon: "🛡️", label: "SOC-2 Compliant Infrastructure", sub: "Your data is encrypted and secure." },
-              { icon: "🇮🇳", label: "GDPR & Indian Data Laws", sub: "Data stored on servers within India." },
-              { icon: "📞", label: "Real Humans in Support", sub: "Not just bots. Phone + WhatsApp + email." },
+              { icon: "🇮🇳", label: "Data Stored in India", sub: "Compliant with Indian data protection laws." },
+              { icon: "📞", label: "Real Humans in Support", sub: "Phone + WhatsApp + email." },
             ].map((t, i) => (
               <div key={i} className="flex flex-col items-center gap-1">
                 <span className="text-3xl">{t.icon}</span>
@@ -207,15 +183,15 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ── Comparison table ── */}
+        {/* Comparison table */}
         <section className="max-w-6xl mx-auto px-5 pb-16">
-          <h2 className="font-display text-2xl font-bold text-navy text-center mb-8">Full feature comparison</h2>
+          <h2 className="font-display text-2xl font-bold text-navy text-center mb-8">{tr.pricing_compare_title}</h2>
           <div className="overflow-x-auto rounded-2xl border border-gray-100 bg-white shadow-sm">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100">
                   <th className="text-left px-6 py-4 text-gray-500 font-medium w-1/3">Feature</th>
-                  {["Free", "Standard", "Pro", "Enterprise"].map(p => (
+                  {["Free", "Standard", "Pro", "Enterprise"].map((p) => (
                     <th key={p} className="px-4 py-4 text-navy font-display font-bold text-center">{p}</th>
                   ))}
                 </tr>
@@ -239,15 +215,12 @@ export default function PricingPage() {
                   ["SLA Guarantee", "❌", "❌", "❌", "✅"],
                   ["Admin accounts", "1", "3", "Unlimited", "Unlimited"],
                   ["6-language UI", "✅", "✅", "✅", "✅"],
-                  ["Push notifications", "✅", "✅", "✅", "✅"],
                   ["Support", "Community", "Email", "Phone + Email", "Dedicated manager"],
                 ].map(([feat, ...vals]) => (
                   <tr key={feat} className="hover:bg-light/50 transition-colors">
                     <td className="px-6 py-3 text-gray-600 font-medium">{feat}</td>
                     {vals.map((v, i) => (
-                      <td key={i} className={`px-4 py-3 text-center ${v === "✅" ? "text-green" : v === "❌" ? "text-gray-200" : "text-navy font-semibold"}`}>
-                        {v}
-                      </td>
+                      <td key={i} className={`px-4 py-3 text-center ${v === "✅" ? "text-green" : v === "❌" ? "text-gray-200" : "text-navy font-semibold"}`}>{v}</td>
                     ))}
                   </tr>
                 ))}
@@ -256,12 +229,12 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ── FAQ ── */}
+        {/* FAQ */}
         <section className="bg-white py-16">
           <div className="max-w-3xl mx-auto px-5">
-            <h2 className="font-display text-3xl font-bold text-navy text-center mb-10">Pricing FAQ</h2>
+            <h2 className="font-display text-3xl font-bold text-navy text-center mb-10">{tr.pricing_faq_title}</h2>
             <div className="space-y-4">
-              {faqs.map((faq, i) => (
+              {faqItems.map((faq, i) => (
                 <details key={i} className="group border border-gray-100 rounded-2xl bg-light overflow-hidden">
                   <summary className="px-5 py-4 font-semibold text-navy cursor-pointer list-none flex items-center justify-between gap-3">
                     <span>{faq.q}</span>
@@ -274,13 +247,13 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ── Final CTA ── */}
+        {/* Final CTA */}
         <section className="py-16">
           <div className="max-w-3xl mx-auto px-5 text-center">
-            <h2 className="font-display text-3xl font-bold text-navy mb-3">Start free. No credit card.</h2>
-            <p className="text-gray-500 mb-8">Join 1,200+ societies already using SocietyApp. Upgrade when you're ready.</p>
+            <h2 className="font-display text-3xl font-bold text-navy mb-3">{tr.hero_badge}.</h2>
+            <p className="text-gray-500 mb-8">{tr.pricing_final_sub}</p>
             <Link href="/register" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-teal text-white font-bold text-sm hover:bg-teal/90 transition-colors shadow-lg shadow-teal/25">
-              Register Your Society Free →
+              {tr.common_register_free} →
             </Link>
           </div>
         </section>

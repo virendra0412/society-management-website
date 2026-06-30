@@ -3,8 +3,10 @@
 // Visitor Management / Maintenance / Community
 // Each: phone mockup left, feature list right (alternating on desktop)
 
+"use client";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
 const demos = [
   {
@@ -85,18 +87,20 @@ const colorMap: Record<string, { bg: string; text: string; border: string; pill:
 };
 
 export default function ProductDemo() {
+  const { tr } = useTranslation();
+
   return (
     <section className="py-24 bg-light">
       <div className="max-w-6xl mx-auto px-5">
         {/* Section header */}
         <p className="text-teal text-xs font-bold uppercase tracking-widest text-center mb-3">
-          See it in action
+          {tr.home_product_eyebrow}
         </p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-navy text-center mb-4">
-          Built for the way Indian societies actually work.
+          {tr.home_product_heading}
         </h2>
         <p className="text-gray-500 text-center max-w-xl mx-auto mb-20 leading-relaxed">
-          Every flow designed with secretaries, guards, and residents in the room — not imported from a Silicon Valley playbook.
+          {tr.home_product_sub}
         </p>
 
         {/* Demo sections */}

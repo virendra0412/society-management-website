@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
 // ─── All 22 modules ───────────────────────────────────────────────────────────
 const ALL_MODULES = [
@@ -174,6 +175,7 @@ const CAT_ICONS: Record<string, string> = {
 
 export default function FeaturesTeaser() {
   const [active, setActive] = useState("All");
+  const { tr } = useTranslation();
 
   const visible = active === "All" ? ALL_MODULES : ALL_MODULES.filter((m) => m.category === active);
 
@@ -184,14 +186,13 @@ export default function FeaturesTeaser() {
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-teal text-xs font-bold uppercase tracking-widest mb-3">
-            22 modules · one app
+            {tr.home_features_eyebrow}
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-navy mb-4">
-            Everything your society needs.
+            {tr.home_features_heading}
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto leading-relaxed text-base">
-            From the gate to the boardroom — every feature your RWA actually needs,
-            built into one mobile-first platform. Browse by category below.
+            {tr.home_features_sub}
           </p>
         </div>
 
@@ -293,20 +294,20 @@ export default function FeaturesTeaser() {
         {/* Bottom CTA */}
         <div className="text-center mt-14">
           <p className="text-gray-400 text-sm mb-4">
-            All features work together in one app — no integrations, no extra costs.
+            {tr.home_features_bottom_sub}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/features"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-navy text-white font-semibold text-sm hover:bg-navy/90 transition-colors shadow-lg shadow-navy/20"
             >
-              Explore all 22 modules <ArrowRight size={15} />
+              {tr.home_features_cta_primary} <ArrowRight size={15} />
             </Link>
             <Link
               href="/register"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-teal text-teal font-semibold text-sm hover:bg-teal hover:text-white transition-all"
             >
-              Start Free — No Credit Card
+              {tr.home_features_cta_secondary}
             </Link>
           </div>
         </div>

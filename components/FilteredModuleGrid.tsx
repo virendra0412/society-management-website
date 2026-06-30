@@ -8,6 +8,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
 export type Module = {
   icon: string;
@@ -22,24 +23,31 @@ export type Module = {
   highlights: string[];
 };
 
-const CATEGORIES = ["All", "Security", "Finance", "Community", "Facilities", "Admin"];
-
 export default function FilteredModuleGrid({ modules }: { modules: Module[] }) {
-  const [active, setActive] = useState("All");
+  const { tr } = useTranslation();
+  const categories = [
+    { id: "all", label: tr.cat_all },
+    { id: "Security", label: tr.cat_security },
+    { id: "Finance", label: tr.cat_finance },
+    { id: "Community", label: tr.cat_community },
+    { id: "Facilities", label: tr.cat_facilities },
+    { id: "Admin", label: tr.cat_admin },
+  ];
+  const [active, setActive] = useState("all");
 
-  const visible = active === "All" ? modules : modules.filter((m) => m.category === active);
+  const visible = active === "all" ? modules : modules.filter((m) => m.category === active);
 
   return (
     <div>
       {/* Filter pill strip */}
       <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-        {CATEGORIES.map((cat) => {
-          const isActive = active === cat;
-          const count = cat === "All" ? modules.length : modules.filter((m) => m.category === cat).length;
+        {categories.map((cat) => {
+          const isActive = active === cat.id;
+          const count = cat.id === "all" ? modules.length : modules.filter((m) => m.category === cat.id).length;
           return (
             <button
-              key={cat}
-              onClick={() => setActive(cat)}
+              key={cat.id}
+              onClick={() => setActive(cat.id)}
               className={`relative px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
                 isActive ? "text-white" : "text-gray-500 hover:text-navy"
               }`}
@@ -52,7 +60,7 @@ export default function FilteredModuleGrid({ modules }: { modules: Module[] }) {
                 />
               )}
               <span className="relative z-10 flex items-center gap-1.5">
-                {cat}
+                {cat.label}
                 <span
                   className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                     isActive ? "bg-white/20 text-white" : "bg-gray-100 text-gray-400"
@@ -113,7 +121,7 @@ export default function FilteredModuleGrid({ modules }: { modules: Module[] }) {
                   </ul>
 
                   <div className="flex items-center gap-1 text-teal text-xs font-semibold group-hover:gap-2 transition-all">
-                    Learn more <ArrowRight size={13} />
+                    {tr.common_learn_more} <ArrowRight size={13} />
                   </div>
                 </Link>
               </motion.div>
@@ -124,7 +132,7 @@ export default function FilteredModuleGrid({ modules }: { modules: Module[] }) {
 
       {visible.length === 0 && (
         <div className="text-center py-16 text-gray-400 text-sm">
-          No modules in this category yet.
+          {tr.cat_empty}
         </div>
       )}
     </div>

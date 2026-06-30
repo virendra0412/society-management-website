@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FilteredModuleGrid from "@/components/FilteredModuleGrid";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
 
 const modules = [
   {
@@ -152,14 +155,16 @@ const modules = [
   },
 ];
 
-const stats = [
-  { value: "22", label: "Modules" },
-  { value: "6", label: "Indian Languages" },
-  { value: "85K+", label: "Residents" },
-  { value: "4.8★", label: "Play Store" },
-];
-
 export default function FeaturesPage() {
+  const { tr } = useTranslation();
+
+  const stats = [
+    { value: "22", label: tr.features_stat_modules },
+    { value: "6", label: tr.features_stat_languages },
+    { value: "85K+", label: tr.features_stat_residents },
+    { value: "4.8★", label: tr.features_stat_rating },
+  ];
+
   return (
     <>
       <Navbar />
@@ -200,7 +205,7 @@ export default function FeaturesPage() {
               href="/register"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal text-white font-semibold text-sm hover:bg-teal/90 transition-colors shadow-lg shadow-teal/25"
             >
-              Register Free — No Credit Card <ArrowRight size={15} />
+              {tr.common_register_free} — {tr.common_no_credit_card} <ArrowRight size={15} />
             </Link>
           </div>
         </section>
@@ -208,7 +213,7 @@ export default function FeaturesPage() {
         {/* Tier legend */}
         <section className="bg-white border-b border-gray-100 py-3">
           <div className="max-w-6xl mx-auto px-5 flex items-center justify-center gap-6 flex-wrap">
-            <span className="text-gray-400 text-xs font-medium">Available on:</span>
+            <span className="text-gray-400 text-xs font-medium">{tr.features_tier_label}</span>
             {[
               { label: "Free", color: "bg-green/10 text-green" },
               { label: "Standard", color: "bg-teal/10 text-teal" },
@@ -234,24 +239,23 @@ export default function FeaturesPage() {
           <div className="absolute left-0 h-full w-1 bg-teal top-0" />
           <div className="max-w-xl mx-auto px-5 relative">
             <h2 className="font-display text-3xl font-bold text-white mb-3">
-              Ready to try all 22 modules?
+              {tr.features_bottom_h}
             </h2>
             <p className="text-white/50 mb-8 leading-relaxed">
-              Register your society for free. No credit card. No hardware.
-              Society live in under 5 minutes.
+              {tr.features_bottom_sub}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/register"
                 className="px-6 py-3 rounded-xl bg-teal text-white font-semibold text-sm hover:bg-teal/90 transition-colors shadow-lg shadow-teal/25"
               >
-                Register Free →
+                {tr.common_register_free} →
               </Link>
               <Link
                 href="/pricing"
                 className="px-6 py-3 rounded-xl border border-white/20 text-white/80 font-semibold text-sm hover:border-white/40 hover:text-white transition-colors"
               >
-                View Pricing
+                {tr.common_view_pricing}
               </Link>
             </div>
           </div>
