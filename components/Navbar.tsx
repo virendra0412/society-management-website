@@ -67,7 +67,7 @@ export default function Navbar() {
         </div>
 
         {/* Right: Lang switcher + CTAs */}
-        {/* <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           <LangSwitcher dark />
           <Link href="/login" className="text-sm text-white/60 hover:text-white font-medium transition-colors px-2">
             {tr.nav_signin}
@@ -75,7 +75,7 @@ export default function Navbar() {
           <Link href="/register" className="px-4 py-2 rounded-lg bg-teal text-white text-sm font-semibold hover:bg-teal/90 transition-colors shadow-lg shadow-teal/20">
             {tr.nav_register}
           </Link>
-        </div> */}
+        </div>
 
         {/* Mobile hamburger */}
         <button className="md:hidden text-white p-1" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
@@ -96,19 +96,16 @@ export default function Navbar() {
           <Link href="/pricing" className="px-3 py-2 text-white/70 hover:text-white text-sm font-medium" onClick={() => setMobileOpen(false)}>{tr.nav_pricing}</Link>
           <Link href="/about" className="px-3 py-2 text-white/70 hover:text-white text-sm font-medium" onClick={() => setMobileOpen(false)}>{tr.nav_about}</Link>
           <Link href="/blog" className="px-3 py-2 text-white/70 hover:text-white text-sm font-medium" onClick={() => setMobileOpen(false)}>{tr.nav_blog}</Link>
-         
-           {/*<hr className="border-white/10 my-2" />
+          <hr className="border-white/10 my-2" />
+          {/* Language switcher in mobile drawer */}
           <div className="px-3 py-2">
-             <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-2">{tr.nav_language}</p>
-            // <LangSwitcher dark />
+            <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-2">{tr.nav_language}</p>
+            <LangSwitcher dark />
           </div>
           <hr className="border-white/10 my-2" />
-          */}
-         {/*
           <Link href="/register" className="block text-center py-3 rounded-xl bg-teal text-white text-sm font-semibold mt-1" onClick={() => setMobileOpen(false)}>
             {tr.nav_register} →
           </Link>
-           */}
         </div>
       )}
     </header>
