@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getAllPosts, formatDate } from "@/lib/blog";
+import { formatDate } from "@/lib/blog";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getBlogContent } from "@/lib/i18n/content/blogContent";
 
 export default function BlogPageContent() {
-  const { tr } = useTranslation();
-  const posts = getAllPosts();
+  const { tr, locale } = useTranslation();
+  const content = getBlogContent(locale);
+  const posts = content.posts;
   const [featured, ...rest] = posts;
 
   return (

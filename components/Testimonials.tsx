@@ -3,72 +3,16 @@
 import { useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
-
-const testimonials = [
-  {
-    name: "Rajesh Patel",
-    title: "Secretary, Shanti Residency",
-    city: "Ahmedabad",
-    units: "120 units",
-    avatar: "RP",
-    rating: 5,
-    quote:
-      "I was managing 120 flats on WhatsApp. Maintenance dues were a nightmare — I had to message each defaulter personally. SocietyApp gave me the defaulter list in one tap. My collection rate went from 60% to 94% in two months.",
-    highlight: "Collection rate: 60% → 94%",
-  },
-  {
-    name: "Ananya Krishnan",
-    title: "RWA President, Prestige Palms",
-    city: "Bengaluru",
-    units: "340 units",
-    avatar: "AK",
-    rating: 5,
-    quote:
-      "We switched from MyGate. The per-unit pricing was killing us — ₹18,000 a month for 340 units. SocietyApp costs less than half and does everything our guards need. The OTP entry flow works exactly the way we need it to.",
-    highlight: "Saved ₹10,000+/month vs MyGate",
-  },
-  {
-    name: "Priya Mehta",
-    title: "Resident, Kalpataru Heights",
-    city: "Pune",
-    units: "200 units",
-    avatar: "PM",
-    rating: 5,
-    quote:
-      "My maid has been coming for 3 years. Every day I used to get a WhatsApp from the guard. Now she has a trusted pass — I get a single evening digest. My phone is quiet, and I still know she arrived. This alone makes the app worth it.",
-    highlight: "Zero daily interruptions from gate",
-  },
-  {
-    name: "Suresh Iyer",
-    title: "Treasurer, Sai Gardens",
-    city: "Chennai",
-    units: "85 units",
-    avatar: "SI",
-    rating: 5,
-    quote:
-      "Setting up our first bill took me 4 minutes. Residents got a push notification, they could see exactly what they owe and why, and 70% paid within 48 hours. No UPI screenshot chaos in the WhatsApp group anymore.",
-    highlight: "70% paid within 48 hours of first bill",
-  },
-  {
-    name: "Meena Agarwal",
-    title: "Secretary, Emerald Township",
-    city: "Jaipur",
-    units: "150 units",
-    avatar: "MA",
-    rating: 5,
-    quote:
-      "The Hindi language support made the difference. Our committee members who aren't comfortable in English could finally use the app properly. Our security guard uses it in Hindi too. That's something MyGate never offered us.",
-    highlight: "Full Hindi UI for guards & committee",
-  },
-];
+import { getTestimonialsContent } from "@/lib/i18n/content/testimonialsContent";
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
-  const { tr } = useTranslation();
+  const { tr, locale } = useTranslation();
+  const content = getTestimonialsContent(locale);
 
-  const prev = () => setActive((i) => (i === 0 ? testimonials.length - 1 : i - 1));
-  const next = () => setActive((i) => (i === testimonials.length - 1 ? 0 : i + 1));
-  const t = testimonials[active];
+  const prev = () => setActive((i) => (i === 0 ? content.items.length - 1 : i - 1));
+  const next = () => setActive((i) => (i === content.items.length - 1 ? 0 : i + 1));
+  const t = content.items[active];
 
   return (
     <section className="py-24 bg-navy relative overflow-hidden">
@@ -139,7 +83,7 @@ export default function Testimonials() {
 
             {/* Dots */}
             <div className="flex gap-2">
-              {testimonials.map((_, i) => (
+              {content.items.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActive(i)}

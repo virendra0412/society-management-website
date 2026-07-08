@@ -4,79 +4,27 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
-
-const plans = [
-  {
-    name: "Free",
-    price: { monthly: 0, annual: 0 },
-    units: "Up to 50 units",
-    badge: null,
-    color: "border-gray-200",
-    cta: { label: "get_started", href: "/register", style: "border border-navy text-navy hover:bg-navy hover:text-white" },
-    features: [
-      "✅ Visitor Management (all 4 flows)", "✅ Notice Board", "✅ Community Help",
-      "✅ Basic Maintenance billing", "✅ 1 Admin account", "✅ Push notifications",
-      "✅ 6 Indian language UI", "❌ Issues & Complaints", "❌ Events & Polls", "❌ Parking Management",
-    ],
-  },
-  {
-    name: "Standard",
-    price: { monthly: 2999, annual: 2499 },
-    units: "Up to 200 units",
-    badge: "Most Popular",
-    color: "border-teal ring-2 ring-teal",
-    cta: { label: "start_trial", href: "/register?plan=standard", style: "bg-teal text-white hover:bg-teal/90" },
-    features: [
-      "✅ Everything in Free", "✅ Issues & Complaints", "✅ Events & Polls",
-      "✅ Parking Management", "✅ 3 Committee role accounts", "✅ Email notifications",
-      "✅ Payment defaulter reports", "✅ Priority email support", "❌ Amenity Booking", "❌ Advanced Analytics",
-    ],
-  },
-  {
-    name: "Pro",
-    price: { monthly: 5999, annual: 4999 },
-    units: "Up to 500 units",
-    badge: null,
-    color: "border-gray-200",
-    cta: { label: "start_trial", href: "/register?plan=pro", style: "bg-navy text-white hover:bg-navy/90" },
-    features: [
-      "✅ Everything in Standard", "✅ Amenity Booking", "✅ Advanced Analytics dashboard",
-      "✅ Priority support (phone + email)", "✅ Unlimited Committee members", "✅ Custom branding",
-      "✅ API Access", "✅ Audit logs", "✅ Custom notification templates", "✅ Multi-society admin",
-    ],
-  },
-  {
-    name: "Enterprise",
-    price: { monthly: null, annual: null },
-    units: "500+ units",
-    badge: null,
-    color: "border-gray-200",
-    cta: { label: "contact_sales", href: "/contact", style: "border border-navy text-navy hover:bg-navy hover:text-white" },
-    features: [
-      "✅ Everything in Pro", "✅ Dedicated server infrastructure", "✅ White-label app",
-      "✅ SLA guarantee (99.9% uptime)", "✅ Onboarding manager", "✅ Custom integrations",
-      "✅ VAPT security audit", "✅ Custom payment gateway", "✅ On-site training", "✅ Quarterly reviews",
-    ],
-  },
-];
-
-const faqItems = [
-  { q: "Is the Free plan really free forever?", a: "Yes. The Free plan has no expiry date and no credit card required. You get Visitor Management, Notice Board, Community Help, and Basic Maintenance for up to 50 units — permanently free." },
-  { q: "Can I upgrade or downgrade mid-month?", a: "You can upgrade anytime and your new features are available immediately. Downgrades take effect at the end of your current billing cycle. You'll never lose data when downgrading." },
-  { q: "Do you charge per unit / per flat?", a: "No per-unit pricing below 200 units. Standard covers up to 200 units for a flat ₹2,999/month regardless of how many residents you have. Pro covers up to 500 units." },
-  { q: "What payment methods do you accept?", a: "We accept UPI (Google Pay, PhonePe, Paytm), all major credit/debit cards, and NEFT/RTGS for annual plans. Invoice billing available for Enterprise." },
-  { q: "Is there a contract or lock-in period?", a: "No lock-in on monthly plans. Annual plans offer 2 months free and are billed once per year. You can cancel anytime with a 30-day money-back guarantee on all paid plans." },
-  { q: "What happens if my society grows beyond the unit limit?", a: "You'll get an in-app notification 30 days before hitting the limit. You can upgrade in one tap — your data and settings are fully preserved." },
-];
+import { getPricingContent } from "@/lib/i18n/content/pricingContent";
 
 export default function PricingPage() {
   const [annual, setAnnual] = useState(false);
-  const { tr } = useTranslation();
+  const { tr, locale } = useTranslation();
+  const pricingContent = getPricingContent(locale);
+  const plans = pricingContent.plans;
+  const faqItems = pricingContent.faqItems;
+  const trustItems = pricingContent.trustItems;
+  const comparisonRows = pricingContent.comparisonRows;
 
   const ctaLabel = (key: string) => {
     if (key === "get_started") return tr.common_get_started;
     if (key === "contact_sales") return tr.common_contact_sales;
     return tr.common_get_started;
+  };
+
+  const getPlanHref = (plan: (typeof plans)[number]) => {
+    if (plan.ctaKey === "get_started") return "/register";
+    if (plan.ctaKey === "contact_sales") return "/contact";
+    return "/register?plan=standard";
   };
 
   return (
@@ -147,9 +95,9 @@ export default function PricingPage() {
                   )}
                 </div>
 
-                <Link href={plan.cta.href}
-                  className={`block text-center py-3 rounded-xl font-semibold text-sm transition-colors mb-5 ${plan.cta.style}`}>
-                  {ctaLabel(plan.cta.label)}
+                <Link href={getPlanHref(plan)}
+                  className={`block text-center py-3 rounded-xl font-semibold text-sm transition-colors mb-5 ${plan.ctaStyle}`}>
+                  {ctaLabel(plan.ctaKey)}
                 </Link>
 
                 <ul className="space-y-2 flex-1">
@@ -168,12 +116,7 @@ export default function PricingPage() {
         {/* Trust strip */}
         <section className="max-w-6xl mx-auto px-5 pb-12">
           <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-center shadow-sm">
-            {[
-              { icon: "🔒", label: "30-Day Money-Back Guarantee", sub: "On all paid plans, no questions asked." },
-              { icon: "🛡️", label: "SOC-2 Compliant Infrastructure", sub: "Your data is encrypted and secure." },
-              { icon: "🇮🇳", label: "Data Stored in India", sub: "Compliant with Indian data protection laws." },
-              { icon: "📞", label: "Real Humans in Support", sub: "Phone + WhatsApp + email." },
-            ].map((t, i) => (
+            {trustItems.map((t, i) => (
               <div key={i} className="flex flex-col items-center gap-1">
                 <span className="text-3xl">{t.icon}</span>
                 <p className="font-semibold text-navy text-sm">{t.label}</p>
@@ -197,26 +140,7 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {[
-                  ["Unit limit", "50", "200", "500", "Unlimited"],
-                  ["Visitor Management", "✅", "✅", "✅", "✅"],
-                  ["Notice Board", "✅", "✅", "✅", "✅"],
-                  ["Basic Maintenance", "✅", "✅", "✅", "✅"],
-                  ["Community Help", "✅", "✅", "✅", "✅"],
-                  ["Issues & Complaints", "❌", "✅", "✅", "✅"],
-                  ["Events & Polls", "❌", "✅", "✅", "✅"],
-                  ["Parking Management", "❌", "✅", "✅", "✅"],
-                  ["Amenity Booking", "❌", "❌", "✅", "✅"],
-                  ["Advanced Analytics", "❌", "❌", "✅", "✅"],
-                  ["API Access", "❌", "❌", "✅", "✅"],
-                  ["Custom Branding", "❌", "❌", "✅", "✅"],
-                  ["White-label App", "❌", "❌", "❌", "✅"],
-                  ["Dedicated Server", "❌", "❌", "❌", "✅"],
-                  ["SLA Guarantee", "❌", "❌", "❌", "✅"],
-                  ["Admin accounts", "1", "3", "Unlimited", "Unlimited"],
-                  ["6-language UI", "✅", "✅", "✅", "✅"],
-                  ["Support", "Community", "Email", "Phone + Email", "Dedicated manager"],
-                ].map(([feat, ...vals]) => (
+                {comparisonRows.map(([feat, ...vals]) => (
                   <tr key={feat} className="hover:bg-light/50 transition-colors">
                     <td className="px-6 py-3 text-gray-600 font-medium">{feat}</td>
                     {vals.map((v, i) => (

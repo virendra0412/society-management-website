@@ -23,8 +23,9 @@ export type Module = {
   highlights: string[];
 };
 
-export default function FilteredModuleGrid({ modules }: { modules: Module[] }) {
+export default function FilteredModuleGrid({ modules, tierLabels }: { modules: Module[]; tierLabels?: string[] }) {
   const { tr } = useTranslation();
+  const tierOptions = tierLabels ?? ["Free", "Standard", "Pro", "All Plans"];
   const categories = [
     { id: "all", label: tr.cat_all },
     { id: "Security", label: tr.cat_security },

@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getPost, getAllPosts, formatDate } from "@/lib/blog";
+import { formatDate } from "@/lib/blog";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getBlogContent } from "@/lib/i18n/content/blogContent";
 
 function renderContent(content: string) {
   const lines = content.trim().split("\n");
@@ -42,11 +43,12 @@ function renderContent(content: string) {
 }
 
 export default function BlogPostContent({ slug }: { slug: string }) {
-  const { tr } = useTranslation();
-  const post = getPost(slug);
+  const { tr, locale } = useTranslation();
+  const content = getBlogContent(locale);
+  const post = content.posts.find((item) => item.slug === slug);
   if (!post) notFound();
 
-  const allPosts = getAllPosts().filter((p) => p.slug !== post.slug).slice(0, 3);
+  const allPosts = content.posts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <>

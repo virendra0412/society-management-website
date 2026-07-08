@@ -7,156 +7,11 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import FilteredModuleGrid from "@/components/FilteredModuleGrid";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
-
-const modules = [
-  {
-    icon: "🚪",
-    title: "Visitor Management",
-    href: "/features/visitor-management",
-    tag: "Most loved",
-    tagColor: "bg-green/10 text-green",
-    tier: "Free",
-    tierColor: "text-green",
-    category: "Security",
-    desc: "OTP-based gate entry, pre-approved visitor passes, trusted visitor list for maids and cooks, full chronological gate log with photos.",
-    highlights: ["OTP entry flow", "Pre-approved passes", "Trusted visitors (maids, cooks)", "Guard mobile app", "Full gate log"],
-  },
-  {
-    icon: "💸",
-    title: "Maintenance & Billing",
-    href: "/features/maintenance",
-    tag: "Free tier",
-    tagColor: "bg-teal/10 text-teal",
-    tier: "Free",
-    tierColor: "text-green",
-    category: "Finance",
-    desc: "Auto-generate monthly bills, send UPI payment links to residents, track defaulters, and issue digital receipts instantly.",
-    highlights: ["Auto bill generation", "UPI payment links", "Defaulter dashboard", "Digital receipts", "Payment reminders"],
-  },
-  {
-    icon: "📢",
-    title: "Notice Board",
-    href: "/features/notices",
-    tag: "",
-    tagColor: "",
-    tier: "Free",
-    tierColor: "text-green",
-    category: "Community",
-    desc: "Post pinned notices with push notifications, category tags (urgent, water, electricity, event), and read-receipt confirmation.",
-    highlights: ["Push notifications", "Category tags", "Pin important notices", "Read receipts", "Scheduled notices"],
-  },
-  {
-    icon: "🛠️",
-    title: "Issues & Complaints",
-    href: "/features/issues",
-    tag: "",
-    tagColor: "",
-    tier: "Standard",
-    tierColor: "text-teal",
-    category: "Admin",
-    desc: "Residents raise complaints with photos. Committee assigns to vendors. Everyone tracks status from open to closed with timestamps.",
-    highlights: ["Photo attachments", "Vendor assignment", "Status tracking", "Resolution timeline", "Closure photos"],
-  },
-  {
-    icon: "🎉",
-    title: "Events & Polls",
-    href: "/features/events",
-    tag: "",
-    tagColor: "",
-    tier: "Standard",
-    tierColor: "text-teal",
-    category: "Community",
-    desc: "Create society events with RSVP, collect poll votes, share photo galleries after events, and export to calendar.",
-    highlights: ["RSVP management", "Community polls", "Photo galleries", "Calendar export", "Attendance tracking"],
-  },
-  {
-    icon: "🏊",
-    title: "Amenity Booking",
-    href: "/features/amenities",
-    tag: "Pro",
-    tagColor: "bg-navy/10 text-navy",
-    tier: "Pro",
-    tierColor: "text-navy",
-    category: "Facilities",
-    desc: "Residents book clubhouse, gym, rooftop, or pool with time slots. Committee approves, collects deposits, manages conflicts.",
-    highlights: ["Time slot booking", "Deposit collection", "Committee approval", "Conflict prevention", "Booking history"],
-  },
-  {
-    icon: "🤝",
-    title: "Community Help",
-    href: "/features/community-help",
-    tag: "",
-    tagColor: "",
-    tier: "Free",
-    tierColor: "text-green",
-    category: "Community",
-    desc: "Neighbour-to-neighbour service marketplace. Residents offer and request help — from tutoring to tool lending.",
-    highlights: ["Service listings", "Request & offer", "Rating system", "In-app chat", "Category browse"],
-  },
-  {
-    icon: "🅿️",
-    title: "Parking Management",
-    href: "/features/parking",
-    tag: "",
-    tagColor: "",
-    tier: "Standard",
-    tierColor: "text-teal",
-    category: "Facilities",
-    desc: "Maintain a slot registry, issue guest parking permits, manage two-wheeler and four-wheeler records per flat.",
-    highlights: ["Slot registry", "Guest permits", "Vehicle records", "Permit expiry alerts", "Flat-wise view"],
-  },
-  {
-    icon: "🌐",
-    title: "Multilingual UI",
-    href: "/features",
-    tag: "Industry first",
-    tagColor: "bg-amber/10 text-amber",
-    tier: "All plans",
-    tierColor: "text-amber",
-    category: "Admin",
-    desc: "Full UI in Hindi, Gujarati, Tamil, Marathi, Punjabi, and English — every resident can use the app in their language.",
-    highlights: ["6 Indian languages", "Per-user preference", "Auto-detect option", "RTL support planned", "Secretary can set default"],
-  },
-  {
-    icon: "📊",
-    title: "Analytics & Reports",
-    href: "/features",
-    tag: "",
-    tagColor: "",
-    tier: "Pro",
-    tierColor: "text-navy",
-    category: "Admin",
-    desc: "Society health dashboard — maintenance collection rate, visitor trends, complaint resolution time, amenity utilisation.",
-    highlights: ["Collection rate chart", "Defaulter trend", "Complaint heatmap", "Amenity utilisation", "Exportable CSV"],
-  },
-  {
-    icon: "💬",
-    title: "Resident Directory",
-    href: "/features",
-    tag: "",
-    tagColor: "",
-    tier: "Free",
-    tierColor: "text-green",
-    category: "Community",
-    desc: "Verified resident list with flat numbers, family members, vehicle details, and emergency contacts — all in one searchable directory.",
-    highlights: ["Flat-wise view", "Family members", "Vehicle details", "Emergency contacts", "Role-based access"],
-  },
-  {
-    icon: "🔔",
-    title: "Notifications Engine",
-    href: "/features",
-    tag: "",
-    tagColor: "",
-    tier: "All plans",
-    tierColor: "text-amber",
-    category: "Security",
-    desc: "Push, SMS, and WhatsApp notifications for every event — visitor arrival, payment due, notice posted, complaint updated.",
-    highlights: ["Push notifications", "SMS fallback", "WhatsApp alerts", "Per-user preferences", "Do not disturb hours"],
-  },
-];
+import { getModulesContent } from "@/lib/i18n/content/modulesContent";
 
 export default function FeaturesPage() {
-  const { tr } = useTranslation();
+  const { tr, locale } = useTranslation();
+  const content = getModulesContent(locale);
 
   const stats = [
     { value: "22", label: tr.features_stat_modules },
@@ -176,17 +31,15 @@ export default function FeaturesPage() {
           <div className="absolute left-0 h-full w-1 bg-teal top-0" />
           <div className="max-w-6xl mx-auto px-5 text-center relative">
             <div className="inline-flex items-center gap-2 bg-teal/20 border border-teal/30 rounded-full px-3.5 py-1.5 mb-6">
-              <span className="text-teal text-xs font-bold uppercase tracking-wide">22 modules · one platform</span>
+              <span className="text-teal text-xs font-bold uppercase tracking-wide">{content.heroBadge}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-              Everything your society needs.
+              {content.heroTitle}
               <br />
-              <span className="text-teal">Nothing it doesn't.</span>
+              <span className="text-teal">{content.heroTitleAccent}</span>
             </h1>
             <p className="text-white/50 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-              From visitor gate entry to maintenance bills — every feature built for
-              Indian residential communities. Modular pricing means you only pay for
-              what you use.
+              {content.heroSub}
             </p>
 
             {/* Stats row */}
@@ -230,7 +83,7 @@ export default function FeaturesPage() {
         {/* Modules grid */}
         <section className="py-16 bg-light">
           <div className="max-w-6xl mx-auto px-5">
-            <FilteredModuleGrid modules={modules} />
+            <FilteredModuleGrid modules={content.modules} tierLabels={content.tierLabels} />
           </div>
         </section>
 

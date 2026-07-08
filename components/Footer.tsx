@@ -88,8 +88,6 @@ export default function Footer() {
           <p className="text-white/30 text-xs">{tr.footer_copyright}</p>
           <div className="flex items-center gap-4">
             <span className="text-white/30 text-xs">{tr.footer_made_with}</span>
-            {/* Language switcher in footer */}
-            <LangSwitcher dark />
           </div>
         </div>
       </div>
