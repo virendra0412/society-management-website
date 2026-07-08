@@ -70,8 +70,8 @@ export default function RegisterPage() {
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setDone(true);
-    if (typeof window !== "undefined" && (window as any).saEvent) {
-      (window as any).saEvent("society_registered", { plan: "free", units: form.units });
+    if (typeof window !== "undefined" && window.saEvent) {
+      window.saEvent("society_registered", { plan: "free", units: form.units });
     }
   }
 
@@ -180,7 +180,7 @@ export default function RegisterPage() {
                         <input type="email" value={form.email} onChange={set("email")} placeholder="secretary@example.com" className={inp(!!errors.email)} />
                       </F>
                       <F label={tr.reg_phone} error={errors.phone}>
-                        <input type="tel" value={form.phone} onChange={set("phone")} placeholder="+91 98765 43210" className={inp(!!errors.phone)} />
+                        <input type="tel" value={form.phone} onChange={set("phone")} placeholder="+91 9537495474" className={inp(!!errors.phone)} />
                       </F>
                     </>
                   )}

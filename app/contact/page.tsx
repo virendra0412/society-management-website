@@ -26,8 +26,8 @@ export default function ContactPage() {
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error ?? "Submission failed");
       setStatus("success");
-      if (typeof window !== "undefined" && (window as any).saEvent)
-        (window as any).saEvent("contact_form_submit", { type: form.type });
+      if (typeof window !== "undefined" && window.saEvent)
+        window.saEvent("contact_form_submit", { type: form.type });
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try WhatsApp instead.");
       setStatus("error");
@@ -99,7 +99,7 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-semibold text-navy mb-1.5">{tr.reg_phone}</label>
-                      <input name="phone" value={form.phone} onChange={handle} placeholder="+91 98765 43210" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal transition-colors" />
+                      <input name="phone" value={form.phone} onChange={handle} placeholder="+91 9537495474" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal transition-colors" />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-navy mb-1.5">{tr.reg_units}</label>
@@ -166,7 +166,7 @@ export default function ContactPage() {
                 <div className="text-3xl mb-3">💬</div>
                 <h3 className="font-display font-bold text-xl mb-2">{tr.contact_sidebar_pref}</h3>
                 <p className="text-white/70 text-sm mb-4 leading-relaxed">{tr.contact_sidebar_pref_desc}</p>
-                <a href="https://wa.me/919876543210?text=Hi%2C%20I'd%20like%20a%20demo%20of%20SocietyApp" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/919537495474?text=Hi%2C%20I'd%20like%20a%20demo%20of%20SocietyApp" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-teal font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white/90 transition-colors">
                   💬 {tr.contact_sidebar_cta}
                 </a>

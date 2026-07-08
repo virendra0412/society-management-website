@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
 
     <p style="color:#374151;font-size:15px;line-height:1.7;margin-bottom:16px;">
       Our team will get back to you within <strong>2–4 hours</strong> on weekdays (Mon–Sat, 9 AM – 7 PM IST).
-      For urgent queries, WhatsApp us at <a href="https://wa.me/919876543210" style="color:#0D7377;">+91 98765 43210</a>.
+      For urgent queries, WhatsApp us at <a href="https://wa.me/9537495474" style="color:#0D7377;">+91 9537495474</a>.
     </p>
 
     <div style="background:#F4F6F8;border-radius:12px;padding:16px 20px;margin-bottom:24px;">

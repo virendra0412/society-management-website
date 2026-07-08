@@ -65,7 +65,6 @@ export interface Translations {
   common_free_forever:   string;
   common_no_credit_card: string;
   common_get_started:    string;
-  common_start_free:     string;
   common_explore:        string;
   common_back:           string;
   common_send_message:   string;
@@ -165,6 +164,9 @@ export interface Translations {
   pricing_custom:   string;
   pricing_per_month: string;
   pricing_forever:  string;
+  pricing_billed_prefix: string;
+  pricing_per_year: string;
+  pricing_feature_col: string;
 
   // ── About / Contact / FAQ ────────────────────────────────────────────────────
   vm_cta_setup: string;
@@ -256,9 +258,6 @@ export interface Translations {
   pricing_compare_title: string;
   pricing_faq_title: string;
   pricing_final_sub: string;
-  pricing_feature: string;
-  pricing_billed: string;
-  pricing_year: string;
   login_reset_title: string;
   login_reset_sub: string;
   login_reset_success_title: string;
@@ -321,7 +320,6 @@ export const t: Record<Locale, Translations> = {
     common_free_forever:   "Free Forever",
     common_no_credit_card: "No Credit Card",
     common_get_started:    "Get Started",
-    common_start_free:     "Start Free",
     common_explore:        "Explore",
     common_back:           "Back",
     common_send_message:   "Send Message",
@@ -418,6 +416,9 @@ export const t: Record<Locale, Translations> = {
     pricing_custom:   "Custom",
     pricing_per_month: "/month",
     pricing_forever:  "forever",
+    pricing_billed_prefix: "Billed",
+    pricing_per_year: "/year",
+    pricing_feature_col: "Feature",
 
     vm_cta_setup:      "Set Up in 5 Minutes — Free",
     vm_cta_headline:   "Set up visitor management in under 5 minutes",
@@ -509,9 +510,6 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "Full feature comparison",
     pricing_faq_title: "Pricing FAQ",
     pricing_final_sub: "Join 1,200+ societies already using SocietyApp. Upgrade when you're ready.",
-    pricing_feature: "Feature",
-    pricing_billed: "Billed",
-    pricing_year: "year",
     login_reset_title: "Reset your password",
     login_reset_sub: "We'll email you a reset link.",
     login_reset_success_title: "Check your inbox",
@@ -668,6 +666,9 @@ export const t: Record<Locale, Translations> = {
     pricing_custom:   "कस्टम",
     pricing_per_month: "/माह",
     pricing_forever:  "हमेशा",
+    pricing_billed_prefix: "बिल",
+    pricing_per_year: "/वर्ष",
+    pricing_feature_col: "फीचर",
 
     vm_cta_setup:      "5 मिनट में सेटअप करें — मुफ़्त",
     vm_cta_headline:   "5 मिनट से कम में विजिटर मैनेजमेंट शुरू करें",
@@ -759,9 +760,6 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "पूरी सुविधा तुलना",
     pricing_faq_title: "मूल्य FAQ",
     pricing_final_sub: "1,200+ सोसायटियों में शामिल हों जो पहले से SocietyApp का उपयोग कर रही हैं। जब आप तैयार हों तो अपग्रेड करें।",
-    pricing_feature: "सुविधा",
-    pricing_billed: "बिल किया गया",
-    pricing_year: "वर्ष",
     login_reset_title: "अपना पासवर्ड रीसेट करें",
     login_reset_sub: "हम आपको रीसेट लिंक ईमेल करेंगे।",
     login_reset_success_title: "अपने इनबॉक्स की जांच करें",
@@ -917,6 +915,9 @@ export const t: Record<Locale, Translations> = {
     pricing_custom:   "કસ્ટમ",
     pricing_per_month: "/મહિનો",
     pricing_forever:  "હંમેશ",
+    pricing_billed_prefix: "બિલ",
+    pricing_per_year: "/વર્ષ",
+    pricing_feature_col: "ફીચર",
     vm_cta_setup:      "5 મિનિટમાં સેટ કરો — મફત",
     vm_cta_headline:   "5 મિનિટ કરતાં ઓછા સમયમાં વિઝિટર મૅનેજ્મૅન્ટ ચાલુ કરો",
     vm_cta_sub:        "50 યુનિટ સુધી હંમેશા મફત. કોઈ ક્રેડિટ કાર્ડ નહીં. કોઈ હાર્ડવેર નહીં.",
@@ -1016,9 +1017,6 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "સંપૂર્ણ સુવિધા સરખામણી",
     pricing_faq_title: "ભાવ FAQ",
     pricing_final_sub: "1,200+ સોસાયટીઓ સાથે જોડાઓ જે પહેલેથી SocietyApp વાપરે છે. જ્યારે તૈયાર હો ત્યારે અપગ્રેડ કરો.",
-    pricing_feature: "સુવિધા",
-    pricing_billed: "બિલ કરેલ",
-    pricing_year: "વર્ષ",
     register_explore_vm: "વિઝિટર મેનેજમેન્ટ જુઓ →",
     register_primary_admin: "પ્રાથમિક એડમિન",
     register_success_home: "હોમ પર પાછા જાઓ",
@@ -1164,6 +1162,9 @@ export const t: Record<Locale, Translations> = {
     pricing_custom:   "தனிப்பயன்",
     pricing_per_month: "/மாதம்",
     pricing_forever:  "என்றும்",
+    pricing_billed_prefix: "பில்",
+    pricing_per_year: "/ஆண்டு",
+    pricing_feature_col: "அம்சம்",
 
     vm_cta_setup:      "5 நிமிடத்தில் அமைக்கவும் — இலவசம்",
     vm_cta_headline:   "5 நிமிடங்களுக்கும் குறைவாக வாசல் மேலாண்மை அமைக்கவும்",
@@ -1255,9 +1256,6 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "முழு அம்ச ஒப்பீடு",
     pricing_faq_title: "விலை FAQ",
     pricing_final_sub: "SocietyApp-ஐப் பயன்படுத்தும் 1,200+ சொசைட்டிகளில் சேருங்கள். நீங்கள் தயாரானதும் அப்டேட் செய்யலாம்.",
-    pricing_feature: "அம்சம்",
-    pricing_billed: "பில்லிடப்பட்டது",
-    pricing_year: "ஆண்டு",
     login_reset_title: "உங்கள் கடவுச்சொல்லை மீட்டமைக்கவும்",
     login_reset_sub: "உங்களுக்கு மீட்டமைப்பு இணைப்பை மின்னஞ்சல் செய்வோம்.",
     login_reset_success_title: "உங்கள் இன்பாக்ஸைச் சரிபார்க்கவும்",
@@ -1413,6 +1411,9 @@ export const t: Record<Locale, Translations> = {
     pricing_custom:   "कस्टम",
     pricing_per_month: "/महिना",
     pricing_forever:  "नेहमी",
+    pricing_billed_prefix: "बिल",
+    pricing_per_year: "/वर्ष",
+    pricing_feature_col: "फीचर",
     vm_cta_setup:      "5 मिनिटांत सेट करा — मोफत",
     vm_cta_headline:   "5 मिनिटांत विजिटर मॅनेजमेंट सुरू करा",
     vm_cta_sub:        "50 युनिटपर्यंत नेहमी मोफत. क्रेडिट कार्ड नाही. हार्डवेअर नाही.",
@@ -1502,9 +1503,6 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "पूर्ण सुविधा तुलना",
     pricing_faq_title: "किंमत FAQ",
     pricing_final_sub: "SocietyApp वापरणाऱ्या 1,200+ सोसायट्यांमध्ये सामील व्हा. तुम्ही तयार असल्यास अपग्रेड करा.",
-    pricing_feature: "वैशिष्ट्य",
-    pricing_billed: "बिल केले",
-    pricing_year: "वर्ष",
     login_reset_title: "पासवर्ड रीसेट करा",
     login_reset_sub: "आम्ही तुम्हाला रीसेट लिंक ईमेल करू.",
     login_reset_success_title: "आपले इनबॉक्स तपासा",
@@ -1660,6 +1658,9 @@ export const t: Record<Locale, Translations> = {
     pricing_custom:   "ਕਸਟਮ",
     pricing_per_month: "/ਮਹੀਨਾ",
     pricing_forever:  "ਹਮੇਸ਼ਾ",
+    pricing_billed_prefix: "ਬਿੱਲ",
+    pricing_per_year: "/ਸਾਲ",
+    pricing_feature_col: "ਫੀਚਰ",
 
     vm_cta_setup:      "5 ਮਿੰਟਾਂ ਵਿੱਚ ਸੈੱਟ ਕਰੋ — ਮੁਫ਼ਤ",
     vm_cta_headline:   "5 ਮਿੰਟਾਂ ਤੋਂ ਘੱਟ ਵਿੱਚ ਵਿਜ਼ਿਟਰ ਮੈਨੇਜਮੈਂਟ ਸ਼ੁਰੂ ਕਰੋ",
@@ -1751,9 +1752,6 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "ਪੂਰਾ ਫੀਚਰ ਤੁਲਨਾ",
     pricing_faq_title: "ਕੀਮਤ FAQ",
     pricing_final_sub: "1,200+ ਸੋਸਾਇਟੀਆਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ ਜੋ ਪਹਿਲਾਂ ਹੀ SocietyApp ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੀਆਂ ਹਨ। ਜਦੋਂ ਤੁਸੀਂ ਤਿਆਰ ਹੋ, ਤਾਂ ਅੱਪਗਰੇਡ ਕਰੋ।",
-    pricing_feature: "ਫੀਚਰ",
-    pricing_billed: "ਬਿਲ ਕੀਤੀ",
-    pricing_year: "ਸਾਲ",
     login_reset_title: "ਆਪਣਾ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ",
     login_reset_sub: "ਅਸੀਂ ਤੁਹਾਨੂੰ ਰੀਸੈੱਟ ਲਿੰਕ ਈਮੇਲ ਕਰਾਂਗੇ।",
     login_reset_success_title: "ਆਪਣੇ ਇਨਬੌਕਸ ਦੀ ਜਾਂਚ ਕਰੋ",

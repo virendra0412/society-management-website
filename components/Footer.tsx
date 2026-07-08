@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
-import LangSwitcher from "./LangSwitcher";
 
 export default function Footer() {
   const { tr } = useTranslation();
@@ -77,7 +76,7 @@ export default function Footer() {
             <p className="text-white font-semibold text-sm">{tr.footer_questions}</p>
             <p className="text-white/40 text-xs">{tr.footer_questions_sub}</p>
           </div>
-          <a href="https://wa.me/919876543210?text=Hi%2C%20I'd%20like%20to%20know%20more%20about%20SocietyApp"
+          <a href="https://wa.me/919537495474?text=Hi%2C%20I'd%20like%20to%20know%20more%20about%20SocietyApp"
             target="_blank" rel="noopener noreferrer"
             className="flex-shrink-0 px-5 py-2.5 rounded-xl bg-teal text-white text-sm font-bold hover:bg-teal/90 transition-colors">
             {tr.footer_cta}

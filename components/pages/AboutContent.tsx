@@ -38,7 +38,7 @@ export default function AboutContent() {
         <section className="max-w-3xl mx-auto px-5 py-16 text-center">
           <div className="text-6xl mb-6">🏘️</div>
           <blockquote className="font-display text-2xl md:text-3xl font-bold text-navy italic leading-relaxed mb-6">
-            "{tr.about_mission}"
+            &ldquo;{tr.about_mission}&rdquo;
           </blockquote>
           <p className="text-gray-400 font-semibold">— Arjun Mehta, Co-Founder & CEO</p>
         </section>

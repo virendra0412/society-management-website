@@ -90,7 +90,7 @@ export default function PricingPage() {
                   )}
                   {annual && plan.price.monthly !== null && plan.price.monthly > 0 && (
                     <p className="text-amber text-xs font-semibold mt-1">
-                      Billed ₹{((plan.price.annual ?? 0) * 12).toLocaleString("en-IN")}/year
+                      {tr.pricing_billed_prefix} ₹{((plan.price.annual ?? 0) * 12).toLocaleString("en-IN")}{tr.pricing_per_year}
                     </p>
                   )}
                 </div>
@@ -133,9 +133,9 @@ export default function PricingPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left px-6 py-4 text-gray-500 font-medium w-1/3">Feature</th>
-                  {["Free", "Standard", "Pro", "Enterprise"].map((p) => (
-                    <th key={p} className="px-4 py-4 text-navy font-display font-bold text-center">{p}</th>
+                  <th className="text-left px-6 py-4 text-gray-500 font-medium w-1/3">{tr.pricing_feature_col}</th>
+                  {plans.map((p) => (
+                    <th key={p.name} className="px-4 py-4 text-navy font-display font-bold text-center">{p.name}</th>
                   ))}
                 </tr>
               </thead>

@@ -148,7 +148,7 @@ export async function POST(req: NextRequest) {
     <div style="padding:16px 20px;background:#FEF3C7;border-radius:12px;margin-bottom:20px;">
       <p style="margin:0;font-size:13px;color:#92400E;">
         <strong>Need to reach us sooner?</strong> WhatsApp us at
-        <a href="https://wa.me/919876543210" style="color:#B45309;">+91 98765 43210</a> — we respond within 2 hours on weekdays.
+        <a href="https://wa.me/919537495474" style="color:#B45309;">+91 95437495474</a> — we respond within 2 hours on weekdays.
       </p>
     </div>
 

@@ -93,7 +93,7 @@ export default function LoginPage() {
                   <div className="relative text-center"><span className="bg-white px-3 text-gray-400 text-xs">or</span></div>
                 </div>
 
-                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20need%20help%20logging%20in"
+                <a href="https://wa.me/9537495474?text=Hi%2C%20I%20need%20help%20logging%20in"
                   target="_blank" rel="noopener noreferrer"
                   className="w-full py-3.5 rounded-xl border border-gray-200 text-gray-600 font-semibold text-sm hover:border-teal/40 transition-colors flex items-center justify-center gap-2">
                   💬 {tr.login_help_whatsapp}
