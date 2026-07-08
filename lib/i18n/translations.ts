@@ -65,6 +65,7 @@ export interface Translations {
   common_free_forever:   string;
   common_no_credit_card: string;
   common_get_started:    string;
+  common_start_free:     string;
   common_explore:        string;
   common_back:           string;
   common_send_message:   string;
@@ -255,6 +256,9 @@ export interface Translations {
   pricing_compare_title: string;
   pricing_faq_title: string;
   pricing_final_sub: string;
+  pricing_feature: string;
+  pricing_billed: string;
+  pricing_year: string;
   login_reset_title: string;
   login_reset_sub: string;
   login_reset_success_title: string;
@@ -317,6 +321,7 @@ export const t: Record<Locale, Translations> = {
     common_free_forever:   "Free Forever",
     common_no_credit_card: "No Credit Card",
     common_get_started:    "Get Started",
+    common_start_free:     "Start Free",
     common_explore:        "Explore",
     common_back:           "Back",
     common_send_message:   "Send Message",
@@ -504,6 +509,9 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "Full feature comparison",
     pricing_faq_title: "Pricing FAQ",
     pricing_final_sub: "Join 1,200+ societies already using SocietyApp. Upgrade when you're ready.",
+    pricing_feature: "Feature",
+    pricing_billed: "Billed",
+    pricing_year: "year",
     login_reset_title: "Reset your password",
     login_reset_sub: "We'll email you a reset link.",
     login_reset_success_title: "Check your inbox",
@@ -751,6 +759,9 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "पूरी सुविधा तुलना",
     pricing_faq_title: "मूल्य FAQ",
     pricing_final_sub: "1,200+ सोसायटियों में शामिल हों जो पहले से SocietyApp का उपयोग कर रही हैं। जब आप तैयार हों तो अपग्रेड करें।",
+    pricing_feature: "सुविधा",
+    pricing_billed: "बिल किया गया",
+    pricing_year: "वर्ष",
     login_reset_title: "अपना पासवर्ड रीसेट करें",
     login_reset_sub: "हम आपको रीसेट लिंक ईमेल करेंगे।",
     login_reset_success_title: "अपने इनबॉक्स की जांच करें",
@@ -1005,6 +1016,9 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "સંપૂર્ણ સુવિધા સરખામણી",
     pricing_faq_title: "ભાવ FAQ",
     pricing_final_sub: "1,200+ સોસાયટીઓ સાથે જોડાઓ જે પહેલેથી SocietyApp વાપરે છે. જ્યારે તૈયાર હો ત્યારે અપગ્રેડ કરો.",
+    pricing_feature: "સુવિધા",
+    pricing_billed: "બિલ કરેલ",
+    pricing_year: "વર્ષ",
     register_explore_vm: "વિઝિટર મેનેજમેન્ટ જુઓ →",
     register_primary_admin: "પ્રાથમિક એડમિન",
     register_success_home: "હોમ પર પાછા જાઓ",
@@ -1241,6 +1255,9 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "முழு அம்ச ஒப்பீடு",
     pricing_faq_title: "விலை FAQ",
     pricing_final_sub: "SocietyApp-ஐப் பயன்படுத்தும் 1,200+ சொசைட்டிகளில் சேருங்கள். நீங்கள் தயாரானதும் அப்டேட் செய்யலாம்.",
+    pricing_feature: "அம்சம்",
+    pricing_billed: "பில்லிடப்பட்டது",
+    pricing_year: "ஆண்டு",
     login_reset_title: "உங்கள் கடவுச்சொல்லை மீட்டமைக்கவும்",
     login_reset_sub: "உங்களுக்கு மீட்டமைப்பு இணைப்பை மின்னஞ்சல் செய்வோம்.",
     login_reset_success_title: "உங்கள் இன்பாக்ஸைச் சரிபார்க்கவும்",
@@ -1485,6 +1502,9 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "पूर्ण सुविधा तुलना",
     pricing_faq_title: "किंमत FAQ",
     pricing_final_sub: "SocietyApp वापरणाऱ्या 1,200+ सोसायट्यांमध्ये सामील व्हा. तुम्ही तयार असल्यास अपग्रेड करा.",
+    pricing_feature: "वैशिष्ट्य",
+    pricing_billed: "बिल केले",
+    pricing_year: "वर्ष",
     login_reset_title: "पासवर्ड रीसेट करा",
     login_reset_sub: "आम्ही तुम्हाला रीसेट लिंक ईमेल करू.",
     login_reset_success_title: "आपले इनबॉक्स तपासा",
@@ -1731,6 +1751,9 @@ export const t: Record<Locale, Translations> = {
     pricing_compare_title: "ਪੂਰਾ ਫੀਚਰ ਤੁਲਨਾ",
     pricing_faq_title: "ਕੀਮਤ FAQ",
     pricing_final_sub: "1,200+ ਸੋਸਾਇਟੀਆਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ ਜੋ ਪਹਿਲਾਂ ਹੀ SocietyApp ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੀਆਂ ਹਨ। ਜਦੋਂ ਤੁਸੀਂ ਤਿਆਰ ਹੋ, ਤਾਂ ਅੱਪਗਰੇਡ ਕਰੋ।",
+    pricing_feature: "ਫੀਚਰ",
+    pricing_billed: "ਬਿਲ ਕੀਤੀ",
+    pricing_year: "ਸਾਲ",
     login_reset_title: "ਆਪਣਾ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ",
     login_reset_sub: "ਅਸੀਂ ਤੁਹਾਨੂੰ ਰੀਸੈੱਟ ਲਿੰਕ ਈਮੇਲ ਕਰਾਂਗੇ।",
     login_reset_success_title: "ਆਪਣੇ ਇਨਬੌਕਸ ਦੀ ਜਾਂਚ ਕਰੋ",
