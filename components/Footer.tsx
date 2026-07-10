@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
-import LangSwitcher from "./LangSwitcher";
 
 export default function Footer() {
   const { tr } = useTranslation();

@@ -62,7 +62,7 @@ const content: Partial<Record<Locale, ProductDemoContent>> = {
           'Bill history with payment method, transaction ID, and receipt',
         ],
         phone: {
-          header: { label: 'Maintenance Bills', sub: 'June 2025' },
+          header: { label: 'Maintenance Bills', sub: 'June 2026' },
           card1: { title: '₹2,400 due', sub: 'June Maintenance · Due 10th' },
           card2: { title: '₹3,100 collected', sub: 'Flat 201 · Paid via UPI' },
           card3: { title: '12 defaulters', sub: '₹28,800 overdue total' },
@@ -127,7 +127,7 @@ const content: Partial<Record<Locale, ProductDemoContent>> = {
           'पेमेंट मेथड, transaction ID और रसीद के साथ बिल हिस्ट्री',
         ],
         phone: {
-          header: { label: 'मेंटेनेंस बिल', sub: 'जून 2025' },
+          header: { label: 'मेंटेनेंस बिल', sub: 'जून 2026' },
           card1: { title: '₹2,400 देय', sub: 'जून मेंटेनेंस · 10 तारीख तक देय' },
           card2: { title: '₹3,100 प्राप्त हुए', sub: 'फ्लैट 201 · UPI से भुगतान' },
           card3: { title: '12 डिफॉल्टर', sub: '₹28,800 कुल बकाया' },
@@ -192,7 +192,7 @@ const content: Partial<Record<Locale, ProductDemoContent>> = {
           'પેમેન્ટ મેથડ, transaction ID અને રસીદ સાથે બિલ હિસ્ટ્રી',
         ],
         phone: {
-          header: { label: 'મેન્ટેનન્સ બિલ', sub: 'જૂન 2025' },
+          header: { label: 'મેન્ટેનન્સ બિલ', sub: 'જૂન 2026' },
           card1: { title: '₹2,400 દેય', sub: 'જૂન મેન્ટેનન્સ · 10મી સુધીમાં દેય' },
           card2: { title: '₹3,100 મળ્યા', sub: 'ફ્લેટ 201 · UPI થી ચૂકવણી' },
           card3: { title: '12 ડિફોલ્ટર', sub: '₹28,800 કુલ બાકી' },
@@ -257,7 +257,7 @@ const content: Partial<Record<Locale, ProductDemoContent>> = {
           'பணம் செலுத்தும் முறை, transaction ID மற்றும் ரசீதுடன் பில் வரலாறு',
         ],
         phone: {
-          header: { label: 'மெயின்டெனன்ஸ் பில்கள்', sub: 'ஜூன் 2025' },
+          header: { label: 'மெயின்டெனன்ஸ் பில்கள்', sub: 'ஜூன் 2026' },
           card1: { title: '₹2,400 நிலுவை', sub: 'ஜூன் மெயின்டெனன்ஸ் · 10ம் தேதிக்குள் செலுத்த வேண்டும்' },
           card2: { title: '₹3,100 வசூலிக்கப்பட்டது', sub: 'ஃப்ளாட் 201 · UPI மூலம் செலுத்தப்பட்டது' },
           card3: { title: '12 defaulters', sub: '₹28,800 மொத்த நிலுவை' },
@@ -322,7 +322,7 @@ const content: Partial<Record<Locale, ProductDemoContent>> = {
           'पेमेंट पद्धत, transaction ID आणि पावतीसह बिल इतिहास',
         ],
         phone: {
-          header: { label: 'मेंटेनन्स बिल', sub: 'जून 2025' },
+          header: { label: 'मेंटेनन्स बिल', sub: 'जून 2026' },
           card1: { title: '₹2,400 देय', sub: 'जून मेंटेनन्स · 10 तारखेपर्यंत देय' },
           card2: { title: '₹3,100 जमा झाले', sub: 'फ्लॅट 201 · UPI द्वारे पेमेंट' },
           card3: { title: '12 डिफॉल्टर', sub: '₹28,800 एकूण थकबाकी' },
@@ -387,7 +387,7 @@ const content: Partial<Record<Locale, ProductDemoContent>> = {
           'ਭੁਗਤਾਨ ਵਿਧੀ, transaction ID ਅਤੇ ਰਸੀਦ ਨਾਲ ਬਿੱਲ ਇਤਿਹਾਸ',
         ],
         phone: {
-          header: { label: 'ਮੇਂਟੇਨੈਂਸ ਬਿੱਲ', sub: 'ਜੂਨ 2025' },
+          header: { label: 'ਮੇਂਟੇਨੈਂਸ ਬਿੱਲ', sub: 'ਜੂਨ 2026' },
           card1: { title: '₹2,400 ਦੇਣਦਾਰੀ', sub: 'ਜੂਨ ਮੇਂਟੇਨੈਂਸ · 10 ਤਾਰੀਖ ਤੱਕ ਦੇਣੀ' },
           card2: { title: '₹3,100 ਇਕੱਠੇ ਹੋਏ', sub: 'ਫਲੈਟ 201 · UPI ਰਾਹੀਂ ਭੁਗਤਾਨ' },
           card3: { title: '12 ਡਿਫਾਲਟਰ', sub: '₹28,800 ਕੁੱਲ ਬਕਾਇਆ' },

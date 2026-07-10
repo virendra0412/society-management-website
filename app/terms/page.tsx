@@ -8,8 +8,8 @@ export const metadata = {
     "The terms and conditions that govern your use of SocietyApp — the society management platform for Indian residential communities.",
 };
 
-const lastUpdated = "1 January 2025";
-const effectiveDate = "1 January 2025";
+const lastUpdated = "1 January 2026";
+const effectiveDate = "1 January 2026";
 
 const sections = [
   {

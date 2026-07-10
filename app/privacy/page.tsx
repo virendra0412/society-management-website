@@ -8,8 +8,8 @@ export const metadata = {
     "SocietyApp's Privacy Policy. How we collect, use, store, and protect your personal data and your society's information.",
 };
 
-const lastUpdated = "1 January 2025";
-const effectiveDate = "1 January 2025";
+const lastUpdated = "1 January 2026";
+const effectiveDate = "1 January 2026";
 
 const sections = [
   {
