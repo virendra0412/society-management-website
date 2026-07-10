@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
@@ -29,13 +30,8 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur border-b border-white/10">
       <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-          <span className="w-8 h-8 rounded-lg bg-teal flex items-center justify-center text-white font-display font-bold text-sm">S</span>
-          <span className="font-display font-bold text-white text-lg tracking-tight">
-            Society<span className="text-teal">App</span>
-          </span>
-        </Link>
+        {/* Logo — matches mobile app's AppLogo.jsx (same icon, wordmark, colors) */}
+        <Logo size="sm" />
 
         {/* Desktop nav + lang switcher — grouped as one right-aligned cluster.
             (Sign In / Register are hidden until the standalone web app ships;

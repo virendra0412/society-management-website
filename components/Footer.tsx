@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
+import Logo from "./Logo";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
+import LangSwitcher from "./LangSwitcher";
 
 export default function Footer() {
   const { tr } = useTranslation();
@@ -38,10 +40,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-8 rounded-lg bg-teal flex items-center justify-center text-white font-display font-bold text-sm">S</span>
-              <span className="font-display font-bold text-white text-lg">Society<span className="text-teal">App</span></span>
-            </Link>
+            <Logo size="md" className="mb-4" />
             <p className="text-white/40 text-sm leading-relaxed mb-4">{tr.footer_brand_desc}</p>
             <div className="flex flex-col gap-2">
               <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer"
@@ -76,7 +75,7 @@ export default function Footer() {
             <p className="text-white font-semibold text-sm">{tr.footer_questions}</p>
             <p className="text-white/40 text-xs">{tr.footer_questions_sub}</p>
           </div>
-          <a href="https://wa.me/919537495474?text=Hi%2C%20I'd%20like%20to%20know%20more%20about%20SocietyApp"
+          <a href="https://wa.me/919876543210?text=Hi%2C%20I'd%20like%20to%20know%20more%20about%20SocietyApp"
             target="_blank" rel="noopener noreferrer"
             className="flex-shrink-0 px-5 py-2.5 rounded-xl bg-teal text-white text-sm font-bold hover:bg-teal/90 transition-colors">
             {tr.footer_cta}

@@ -4,7 +4,33 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
-import { getHomeFeaturesContent } from "@/lib/i18n/content/homeFeaturesContent";
+import { getModulesGridContent } from "@/lib/i18n/content/modulesGridContent";
+
+// ─── Non-text metadata for all 22 modules (icon, href, tier, badge) ───────────
+const MODULE_META: Record<string, { icon: string; href: string; tier: string; badge: string; badgeColor: string }> = {
+  "visitor-management": { icon: "🚪", href: "/features/visitor-management", tier: "Free", badge: "Most Loved", badgeColor: "bg-green/15 text-green" },
+  "security-guard-portal": { icon: "👮", href: "/features/visitor-management", tier: "Free", badge: "", badgeColor: "" },
+  "maintenance-billing": { icon: "💸", href: "/features/maintenance", tier: "Free", badge: "Free Tier", badgeColor: "bg-teal/15 text-teal" },
+  "payment-analytics": { icon: "📊", href: "/features/maintenance", tier: "Standard", badge: "", badgeColor: "" },
+  "notice-board": { icon: "📢", href: "/features/notices", tier: "Free", badge: "", badgeColor: "" },
+  "issues-complaints": { icon: "🛠️", href: "/features/issues", tier: "Standard", badge: "", badgeColor: "" },
+  "events-polls": { icon: "🎉", href: "/features/events", tier: "Standard", badge: "", badgeColor: "" },
+  "community-polls": { icon: "🗳️", href: "/features/events", tier: "Standard", badge: "", badgeColor: "" },
+  "community-help": { icon: "🤝", href: "/features/community-help", tier: "Free", badge: "", badgeColor: "" },
+  "amenity-booking": { icon: "🏊", href: "/features/amenities", tier: "Pro", badge: "Pro", badgeColor: "bg-amber/15 text-amber" },
+  "parking-management": { icon: "🅿️", href: "/features/parking", tier: "Standard", badge: "", badgeColor: "" },
+  "member-management": { icon: "👥", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+  "committee-rbac": { icon: "🛡️", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+  "invite-links-qr": { icon: "🔗", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+  "multi-society": { icon: "🏘️", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+  "subscription-plans": { icon: "📦", href: "/pricing", tier: "All", badge: "", badgeColor: "" },
+  "push-notifications": { icon: "🔔", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+  "audit-log": { icon: "📋", href: "/features", tier: "Standard", badge: "", badgeColor: "" },
+  "multilingual-ui": { icon: "🌐", href: "/features", tier: "Free", badge: "India-first", badgeColor: "bg-amber/15 text-amber" },
+  "society-registration": { icon: "🏢", href: "/register", tier: "Free", badge: "", badgeColor: "" },
+  "profile-settings": { icon: "⚙️", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+  "notification-digest": { icon: "📨", href: "/features", tier: "Free", badge: "", badgeColor: "" },
+};
 
 const CATS = ["All", "Security", "Finance", "Community", "Facilities", "Admin"];
 const CAT_ICONS: Record<string, string> = {
@@ -14,9 +40,9 @@ const CAT_ICONS: Record<string, string> = {
 export default function FeaturesTeaser() {
   const [active, setActive] = useState("All");
   const { tr, locale } = useTranslation();
-  const { modules } = getHomeFeaturesContent(locale);
+  const { modules: ALL_MODULES, categories, tiers, learnMore } = getModulesGridContent(locale);
 
-  const visible = active === "All" ? modules : modules.filter((m) => m.category === active);
+  const visible = active === "All" ? ALL_MODULES : ALL_MODULES.filter((m) => m.category === active);
 
   return (
     <section className="py-20 bg-light" id="features">
@@ -39,7 +65,7 @@ export default function FeaturesTeaser() {
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {CATS.map((cat) => {
             const isActive = active === cat;
-            const count = cat === "All" ? modules.length : modules.filter((m) => m.category === cat).length;
+            const count = cat === "All" ? ALL_MODULES.length : ALL_MODULES.filter((m) => m.category === cat).length;
             return (
               <button
                 key={cat}
@@ -51,7 +77,7 @@ export default function FeaturesTeaser() {
                 }`}
               >
                 <span className="text-base leading-none">{CAT_ICONS[cat]}</span>
-                <span>{cat}</span>
+                <span>{categories[cat]}</span>
                 <span
                   className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                     isActive ? "bg-white/20 text-white" : "bg-gray-100 text-gray-400"
@@ -70,34 +96,36 @@ export default function FeaturesTeaser() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           <AnimatePresence mode="popLayout">
-            {visible.map((m) => (
+            {visible.map((m) => {
+              const meta = MODULE_META[m.id];
+              return (
               <motion.div
-                key={m.title}
+                key={m.id}
                 layout
                 initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
-                transition={{ type: "spring", duration: 0.3, bounce: 0.1 }}
+                transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
               >
                 <Link
-                  href={m.href}
+                  href={meta.href}
                   className="group bg-white rounded-2xl p-5 border border-gray-100 hover:border-teal/40 hover:shadow-lg transition-all flex flex-col h-full"
                 >
                   {/* Top row */}
                   <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl">{m.icon}</span>
+                    <span className="text-3xl">{meta.icon}</span>
                     <div className="flex items-center gap-1.5 flex-wrap justify-end">
-                      {m.badge && (
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${m.badgeColor}`}>
-                          {m.badge}
+                      {meta.badge && (
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${meta.badgeColor}`}>
+                          {meta.badge}
                         </span>
                       )}
                       <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                        m.tier === "Free" ? "bg-green/10 text-green" :
-                        m.tier === "Standard" ? "bg-teal/10 text-teal" :
-                        m.tier === "Pro" ? "bg-amber/10 text-amber" : "bg-gray-100 text-gray-400"
+                        meta.tier === "Free" ? "bg-green/10 text-green" :
+                        meta.tier === "Standard" ? "bg-teal/10 text-teal" :
+                        meta.tier === "Pro" ? "bg-amber/10 text-amber" : "bg-gray-100 text-gray-400"
                       }`}>
-                        {m.tier}
+                        {tiers[meta.tier]}
                       </span>
                     </div>
                   </div>
@@ -122,11 +150,12 @@ export default function FeaturesTeaser() {
 
                   {/* Learn more */}
                   <div className="flex items-center gap-1 text-teal text-xs font-semibold group-hover:gap-2 transition-all mt-auto">
-                    {tr.common_learn_more} <ArrowRight size={13} />
+                    {learnMore} <ArrowRight size={13} />
                   </div>
                 </Link>
               </motion.div>
-            ))}
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 

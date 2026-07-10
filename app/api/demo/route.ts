@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[demo/route] Error:", err);
     return NextResponse.json(

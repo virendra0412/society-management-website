@@ -3,33 +3,17 @@ import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { StaggerGroup, StaggerItem } from "./ScrollReveal";
 import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getProblemContent } from "@/lib/i18n/content/problemContent";
 
-const problems = [
-  {
-    emoji: "😤",
-    title: "Security chaos at the gate",
-    desc: "Guards with paper registers, residents complaining about unknown visitors, no OTP flow, no accountability.",
-    fix: "Visitor Management with OTP entry, pre-approved passes, and a full log.",
-    href: "/features/visitor-management",
-  },
-  {
-    emoji: "📱",
-    title: "WhatsApp maintenance fights",
-    desc: "300 people in one group, fee disputes, no receipts, chasing defaulters every month manually.",
-    fix: "Automated bills, UPI payment links, defaulter list at a glance.",
-    href: "/features/maintenance",
-  },
-  {
-    emoji: "🗂️",
-    title: "Complaints go nowhere",
-    desc: "Issues raised on WhatsApp get buried. No tracking, no resolution timeline, no accountability.",
-    fix: "Complaint ticketing with assigned owners, status updates, and closure photos.",
-    href: "/features/issues",
-  },
-];
+const problemMeta: Record<string, { emoji: string; href: string }> = {
+  visitor: { emoji: "😤", href: "/features/visitor-management" },
+  maintenance: { emoji: "📱", href: "/features/maintenance" },
+  issues: { emoji: "🗂️", href: "/features/issues" },
+};
 
 export default function ProblemSection() {
-  const { tr } = useTranslation();
+  const { tr, locale } = useTranslation();
+  const { problems } = getProblemContent(locale);
   const reduceMotion = useReducedMotion();
 
   return (
@@ -45,9 +29,9 @@ export default function ProblemSection() {
 
         <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {problems.map((p, i) => (
-            <StaggerItem key={i}>
+            <StaggerItem key={p.id}>
               <div className="group h-full rounded-2xl border border-gray-100 border-l-4 border-l-red-400 p-6 hover:shadow-lg transition-shadow">
-                <div className="text-3xl mb-4">{p.emoji}</div>
+                <div className="text-3xl mb-4">{problemMeta[p.id].emoji}</div>
                 <h3 className="font-display font-bold text-navy text-lg mb-2">{p.title}</h3>
                 <p className="relative text-gray-400 text-sm leading-relaxed mb-4">
                   {p.desc}
@@ -64,7 +48,7 @@ export default function ProblemSection() {
                 <div className="border-t border-gray-100 pt-4">
                   <p className="text-xs font-semibold text-teal uppercase tracking-wide mb-1">{tr.home_problem_fix_label}</p>
                   <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.fix}</p>
-                  <Link href={p.href} className="text-teal text-xs font-semibold hover:underline">
+                  <Link href={problemMeta[p.id].href} className="text-teal text-xs font-semibold hover:underline">
                     {tr.common_learn_more} →
                   </Link>
                 </div>

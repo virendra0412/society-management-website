@@ -107,11 +107,7 @@ export default function Testimonials() {
 
         {/* Trust stats row */}
         <div className="grid grid-cols-3 gap-6 mt-16 pt-12 border-t border-white/10">
-          {[
-            { value: "1,200+", label: "Societies onboarded" },
-            { value: "85,000+", label: "Residents on platform" },
-            { value: "4.8★", label: "Play Store rating" },
-          ].map((s, i) => (
+          {content.trustStats.map((s, i) => (
             <div key={i} className="text-center">
               <p className="font-display text-2xl md:text-3xl font-bold text-teal mb-1">
                 {s.value}
