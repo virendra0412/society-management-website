@@ -37,44 +37,42 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-5">
-          {/* Features mega-dropdown */}
-          <div className="relative" onMouseEnter={() => setFeaturesOpen(true)} onMouseLeave={() => setFeaturesOpen(false)}>
-            <button className={`flex items-center gap-1 text-sm font-medium transition-colors ${isActive("/features") ? "text-teal" : "text-white/70 hover:text-white"}`}>
-              {tr.nav_features} <ChevronDown size={14} className={`transition-transform ${featuresOpen ? "rotate-180" : ""}`} />
-            </button>
-            {featuresOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#0a1628] border border-white/10 rounded-2xl shadow-2xl p-3">
-                <Link href="/features" className="block px-3 py-2 rounded-lg text-white/50 text-xs font-semibold uppercase tracking-widest hover:text-white mb-1">
-                  {tr.nav_all_modules}
-                </Link>
-                <div className="grid grid-cols-2 gap-1">
-                  {featureLinks.map((f) => (
-                    <Link key={f.href} href={f.href} className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm transition-colors ${isActive(f.href) ? "bg-teal/20 text-teal" : "text-white/70 hover:bg-white/5 hover:text-white"}`}>
-                      <span>{f.icon}</span>
-                      <span className="text-xs leading-tight">{f.labelKey}</span>
-                    </Link>
-                  ))}
+        {/* Desktop nav + lang switcher — grouped as one right-aligned cluster.
+            (Sign In / Register are hidden until the standalone web app ships;
+            this single group avoids the empty gap that hiding them would
+            otherwise leave under the old 3-column layout.) */}
+        <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-5">
+            {/* Features mega-dropdown */}
+            <div className="relative" onMouseEnter={() => setFeaturesOpen(true)} onMouseLeave={() => setFeaturesOpen(false)}>
+              <button className={`flex items-center gap-1 text-sm font-medium transition-colors ${isActive("/features") ? "text-teal" : "text-white/70 hover:text-white"}`}>
+                {tr.nav_features} <ChevronDown size={14} className={`transition-transform ${featuresOpen ? "rotate-180" : ""}`} />
+              </button>
+              {featuresOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#0a1628] border border-white/10 rounded-2xl shadow-2xl p-3">
+                  <Link href="/features" className="block px-3 py-2 rounded-lg text-white/50 text-xs font-semibold uppercase tracking-widest hover:text-white mb-1">
+                    {tr.nav_all_modules}
+                  </Link>
+                  <div className="grid grid-cols-2 gap-1">
+                    {featureLinks.map((f) => (
+                      <Link key={f.href} href={f.href} className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm transition-colors ${isActive(f.href) ? "bg-teal/20 text-teal" : "text-white/70 hover:bg-white/5 hover:text-white"}`}>
+                        <span>{f.icon}</span>
+                        <span className="text-xs leading-tight">{f.labelKey}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+
+            <Link href="/pricing" className={`text-sm font-medium transition-colors ${isActive("/pricing") ? "text-teal" : "text-white/70 hover:text-white"}`}>{tr.nav_pricing}</Link>
+            <Link href="/about" className={`text-sm font-medium transition-colors ${isActive("/about") ? "text-teal" : "text-white/70 hover:text-white"}`}>{tr.nav_about}</Link>
+            <Link href="/blog" className={`text-sm font-medium transition-colors ${isActive("/blog") ? "text-teal" : "text-white/70 hover:text-white"}`}>{tr.nav_blog}</Link>
           </div>
 
-          <Link href="/pricing" className={`text-sm font-medium transition-colors ${isActive("/pricing") ? "text-teal" : "text-white/70 hover:text-white"}`}>{tr.nav_pricing}</Link>
-          <Link href="/about" className={`text-sm font-medium transition-colors ${isActive("/about") ? "text-teal" : "text-white/70 hover:text-white"}`}>{tr.nav_about}</Link>
-          <Link href="/blog" className={`text-sm font-medium transition-colors ${isActive("/blog") ? "text-teal" : "text-white/70 hover:text-white"}`}>{tr.nav_blog}</Link>
-        </div>
-
-        {/* Right: Lang switcher + CTAs */}
-        <div className="hidden md:flex items-center gap-2">
-          <LangSwitcher dark />
-          <Link href="/login" className="text-sm text-white/60 hover:text-white font-medium transition-colors px-2">
-            {tr.nav_signin}
-          </Link>
-          <Link href="/register" className="px-4 py-2 rounded-lg bg-teal text-white text-sm font-semibold hover:bg-teal/90 transition-colors shadow-lg shadow-teal/20">
-            {tr.nav_register}
-          </Link>
+          <div className="flex items-center pl-6 border-l border-white/10">
+            <LangSwitcher dark />
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -98,14 +96,10 @@ export default function Navbar() {
           <Link href="/blog" className="px-3 py-2 text-white/70 hover:text-white text-sm font-medium" onClick={() => setMobileOpen(false)}>{tr.nav_blog}</Link>
           <hr className="border-white/10 my-2" />
           {/* Language switcher in mobile drawer */}
-          <div className="px-3 py-2">
+          <div className="px-3 py-2 pb-1">
             <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-2">{tr.nav_language}</p>
             <LangSwitcher dark />
           </div>
-          <hr className="border-white/10 my-2" />
-          <Link href="/register" className="block text-center py-3 rounded-xl bg-teal text-white text-sm font-semibold mt-1" onClick={() => setMobileOpen(false)}>
-            {tr.nav_register} →
-          </Link>
         </div>
       )}
     </header>
